@@ -50,7 +50,7 @@
 				      
 				      <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>   -->
 		      
-				      <p class="mt-5 mb-3 text-muted">© 2022</p>
+				     
 			    </form> 
 	    
 		   		<div class="text-center">
@@ -60,6 +60,7 @@
 			    <a href="#"> Olvide la contraseña </a><br>
 			    <a href="#" class="text-center"> Registrar un nuevo usuario </a>
 		   	</div>
+		   	<p class="mt-5 mb-3 text-muted">© 2022</p>
    		</div>
 	    
 	    
