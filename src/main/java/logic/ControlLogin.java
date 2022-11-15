@@ -17,7 +17,7 @@ public class ControlLogin {
 		 * adecuado para generar un hash de la password utilizando un cifrado
 		 * asimétrico como sha256 y utilizar el hash en lugar de la password en plano 
 		 */
-		return dp.getByEmail(p);
+		return dp.getByEmailPassword(p);
 	}
 
 	public LinkedList<Persona> getAll(){

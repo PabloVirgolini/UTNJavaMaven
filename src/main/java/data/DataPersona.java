@@ -64,7 +64,7 @@ public class DataPersona {
 	}
 	
 	
-	public Persona getByEmail(Persona per) {
+	public Persona getByEmailPassword(Persona per) {
 		DataRol dr=null;
 		CargoDAO cDAO = new CargoDAO();
 		Persona p=null;

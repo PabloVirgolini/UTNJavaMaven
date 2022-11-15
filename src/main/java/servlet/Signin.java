@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import data.DataPersona;
 import data.DataRol;
 import entities.Persona;
 import entities.Rol;
@@ -49,38 +51,77 @@ public class Signin extends HttpServlet {
 		
 		System.out.println("DO POST del ServLet SIGNIN");
 		
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");		
-		
-		Persona per = new Persona();
-		ControlLogin ctrl = new ControlLogin();
-		
-		per.setEmail(email);
-		per.setPassword(password);
-		per = ctrl.validateUser(per);
-		
-		if (per!=null) {
-			request.getSession().setAttribute("usuario", per);
-			
-			if (ctrl.validatePermisos(per, 1)==true) {
-								
-				LinkedList<Persona> personas = ctrl.getAll();
-				
-				request.setAttribute("listaPersonas", personas);
-				
-				request.getRequestDispatcher("/UsuariosServlet").forward(request,response);
-				
-				
-			} else if(ctrl.validatePermisos(per, 2)) {
-				
-				request.getRequestDispatcher("vistas/MenuPrincipal.jsp").forward(request,response);
-				
-				
-			} 
-		}else {	
-			request.getRequestDispatcher("/vistas/loginIncorrecto.jsp").forward(request,response);
+		String accion = request.getParameter("accion");
+		System.out.println("accion: " + accion);
+		try {
+			if (accion!=null) {
+				switch(accion) {
+					case "verificar":
+						System.out.println("Entra a Verificar");
+						verificar(request,response);
+						break;					
+					
+					case "cerrar":
+						cerrarSession(request,response);
+						break;
+					
+					default:
+						response.sendRedirect("index.jsp");
+				}
+			}else {
+				response.sendRedirect("index.jsp");
+			}
+		}catch(Exception e) {
+			try {
+				this.getServletConfig().getServletContext().getRequestDispatcher("/mensaje.jsp").forward(request,response);
+			} catch(Exception ex) {
+				System.out.println("Error " + e.getMessage());
+			}
 		}
+			
 
+	}
+
+	private void cerrarSession(HttpServletRequest request, HttpServletResponse response)throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		session.setAttribute("usuario", null);
+		session.invalidate();
+		response.sendRedirect("index.jsp");
+	}
+
+	private void verificar(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		// TODO Auto-generated method stub
+		HttpSession session;
+		ControlLogin ctrl= new ControlLogin();
+		Persona p = null;
+		p = this.obtenerPersona(request);
+		System.out.println("PERSONA ANTES DE VALIDAR:" + p);
+		p=ctrl.validateUser(p);
+		System.out.println("PERSONA DESPUES DE VALIDAR:" + p);
+		if(p!=null && ctrl.validatePermisos(p,1) ) {
+			session=request.getSession();
+			session.setAttribute("usuario", p);
+			request.setAttribute("msje", "Bienvenido al sistema");
+			LinkedList<Persona> lista=ctrl.getAll();
+			request.setAttribute("listaPersonas", lista);
+			this.getServletConfig().getServletContext().getRequestDispatcher("/WEB-INF/UserManagement.jsp").forward(request,response);
+		}else if(p!=null && ctrl.validatePermisos(p,2)){
+			session=request.getSession();
+			session.setAttribute("consulta",p);
+			this.getServletConfig().getServletContext().getRequestDispatcher("/vistas/MenuPrincipal.jsp").forward(request,response);
+		}else {
+			request.setAttribute("msje", "Credenciales incorrectas");
+			request.getRequestDispatcher("index.jsp").forward(request,response);
+		}
+	}
+	
+	private Persona obtenerPersona(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		Persona p = new Persona();
+		p.setEmail(request.getParameter("email"));
+		p.setPassword(request.getParameter("password"));
+		return p;
 	}
 
 }

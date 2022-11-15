@@ -7,6 +7,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% 
+
+	if (session.getAttribute("usuario")!=null) { 
+%>
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,6 +36,7 @@
 	<%
 		Persona p= (Persona)session.getAttribute("usuario");
 		LinkedList<Persona> lp= (LinkedList<Persona>)request.getAttribute("listaPersonas");
+		
 	%>
 	
 </head>
@@ -39,7 +45,7 @@
 	<% 
 		CargoDAO cDAO = new CargoDAO();
 		DataPersona pDAO = new DataPersona();
-	%>
+	%> 
 	<div class="container">
 		<% if (p.isHabilitado()) { %>
 			<%@include file="../template/menu.jsp" %>	
@@ -254,3 +260,8 @@
 	
 	</body>
 </html>
+<%        
+    } else {
+        response.sendRedirect("index.jsp");
+    }
+%>
