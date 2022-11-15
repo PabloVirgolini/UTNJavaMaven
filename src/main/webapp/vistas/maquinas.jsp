@@ -9,20 +9,13 @@
 <%@page import="data.MaquinaDAO" %>
 <%@page import="java.util.LinkedList"%>
 
-	<%
-		Persona p= (Persona)session.getAttribute("usuario");
-		//LinkedList<Persona> lp= (LinkedList<Persona>)request.getAttribute("listaPersonas");
-	%>
-
 
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-		
-	<title>Mantenimiento - Maquinas</title>
+    		
+	<title>Gestion de Mantenimiento</title>
 	
 	<!--  Bootstrap core CSS -->
 	<link href="style/bootstrap.css" rel="stylesheet">
@@ -32,6 +25,10 @@
 	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+	
+	<% 
+		Persona p= (Persona)session.getAttribute("usuario");
+	%>
 	
 </head>
 
@@ -44,36 +41,47 @@
 	
 								
 	<div class="container">
-	<%@include file="../template/menu.jsp" %>
-		
+		<% if (p.isHabilitado()) { %>
+			<%@include file="../template/menu.jsp" %>	
+		<%} else {%>
+			<%@include file="../template/menu2.jsp" %>
+		<%} %>
+
 		
 		<hr>
-		
 		<div class="row align-items-start">
 			<div class="col-9">
 				<h1>Gestión de Mantenimiento</h1>
 			</div>
-			<div class="col-3" align-self-center>
-				<div class="d-grid gap-2">
-					<button type="button" class="btn btn-success btnAdd" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-				</div>
-			</div>
+
 		</div>
 				
 		
 		<div class="table-responsive">
 			<hr>
-			<h4>Maquinas</h4>
+			<div class="row align-items-start">
+				<div class="col-9">
+					<h4>Maquinas</h4>
+				</div>
+				<div class="col-3" align-self-center>
+					<div class="d-grid gap-2">
+						<button type="button" class="btn btn-success btnAdd" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+					</div>
+				</div>
+			</div>
+			
 			<hr>
 		
 			<table class="table table-striped" id="tablaMaquinas">
 				<thead>
-					<th>id</th>
-					<th>nombre</th>
-					<th>sector</th>
-					<th>fecha de alta</th>
-					<th>fecha de baja</th>
-					<th>Acciones</th>
+					<tr>
+						<th>id</th>
+						<th>nombre</th>
+						<th>sector</th>
+						<th>fecha de alta</th>
+						<th>fecha de baja</th>
+						<th>Acciones</th>
+					</tr>
 				</thead>
 				<tbody>
 					<%

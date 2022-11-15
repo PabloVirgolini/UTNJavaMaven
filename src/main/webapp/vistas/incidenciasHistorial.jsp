@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 <%@page import="entities.Seccion"%>
 <%@page import="entities.Persona"%>
 <%@page import="entities.Incidencia"%>
@@ -6,10 +9,12 @@
 <%@page import="data.MaquinaDAO" %>
 <%@page import="data.DataPersona" %>
 <%@page import="logic.GestionarIncidencia" %>
+
 <%@page import="java.util.LinkedList"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +22,13 @@
 	<meta "http-equiv="X-UA-Compatible content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--  The above 3 meta tags *must* come first in the head; any other head content must come *after* -->
+	
 	<meta name="description" content="">
 	<meta name="author" content="">
+	
 	<link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+
 
 	<title>Gestion de Mantenimiento</title>
 	
@@ -34,7 +43,6 @@
 	
 	<%
 		Persona p= (Persona)session.getAttribute("usuario");
-		
 		LinkedList<Incidencia> listaIncidencias= (LinkedList<Incidencia>)request.getAttribute("listaIncidencias");
 		Maquina m= (Maquina)request.getAttribute("maquinaIncidencia");
 	%>
@@ -48,15 +56,18 @@
 		GestionarIncidencia ctrl = new GestionarIncidencia();
 		// IncidenciaDAO iDAO = new IncidenciaDAO();
 	%>
-	<div class="container">
 	
+	
+	
+	<div class="container">
 		<% if (p.isHabilitado()) { %>
 			<%@include file="../template/menu.jsp" %>	
 		<%} else {%>
 			<%@include file="../template/menu2.jsp" %>
 		<%} %>
 		
-		<br>
+		
+		<hr>
 		<div class="row align-items-start">
 			<div class="col-9">
 				<h1>Gestión de Mantenimiento</h1>
@@ -69,46 +80,48 @@
 			</div>
 		</div>
 			
-		<div class="row">
+		<div class="table-responsive">
+			<hr>
+			<div class="col-9">
+				<h4>INCIDENCIAS   -   Maquina: <%=m.getNombre()%></h4>
+			</div>
+			 
 			<hr>
 			
-			<h4>INCIDENCIAS   -   Maquina: <%=m.getNombre()%></h4> 
-				<div class="col-12 col-sm-12 col-lg-12">
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>id</th>
-									<th>maquina</th>
-									<th>fechaApertura</th>
-									<th>fechaCierre</th>
-									<th>PersonaApertura</th>
-									<th>PersonaAsignada</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-							<%for(Incidencia inc: listaIncidencias){ %>
-								<tr>
-									<td class="id"><%=inc.getId()%></td>
-									<td class="maquina"><%=inc.getMaquina().getNombre()%> </td>
-									<td class="fechaApertura"><%=inc.getFechaApertura()%> </td>
-									<td class="fechaCierre"><%=inc.getFechaCierre()%> </td>
-									<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
-									<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
-									<td>
-										<button type="button" class="btn btn-info btnVerFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button>
-										<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-										<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-									</td>
-								</tr>
-							<% } %>
-							</tbody>
-					</table>
-				</div>
-			</div>
-		</div>	
+			<table class="table table-striped" id="tablaIncidenciasHistorial">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>maquina</th>
+						<th>fechaApertura</th>
+						<th>fechaCierre</th>
+						<th>PersonaApertura</th>
+						<th>PersonaAsignada</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
+					for(Incidencia inc: listaIncidencias){
+					%>
+						<tr>
+							<td class="id"><%=inc.getId()%></td>
+							<td class="maquina"><%=inc.getMaquina().getNombre()%> </td>
+							<td class="fechaApertura"><%=inc.getFechaApertura()%> </td>
+							<td class="fechaCierre"><%=inc.getFechaCierre()%> </td>
+							<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
+							<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
+							<td>
+								<button type="button" class="btn btn-info btnVerFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button>
+								<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+								<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+							</td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+			
+	</div>	 <!--- Container -->
 		
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -195,6 +208,8 @@
     <%
     	}
     %>
+	
+	<script src="${pageContext.servletContext.contextPath}/js/incidenciasHistorial.js"></script>
 	
 	</body>
 </html>

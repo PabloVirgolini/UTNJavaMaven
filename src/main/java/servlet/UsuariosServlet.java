@@ -38,10 +38,16 @@ public class UsuariosServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		System.out.println("DO GET del ServLet USUARIOSSERVLET");
+		
 		Persona p= (Persona) request.getSession().getAttribute("usuario");
 		System.out.println(p);
 		if (p.isHabilitado()) {
-			doPost(request, response);
+			request.setAttribute("email",p.getEmail());
+			request.setAttribute("password",p.getPassword());
+			
+			request.getRequestDispatcher("/Signin").forward(request,response);
 		}else {
 			
 			request.getRequestDispatcher("vistas/MenuPrincipal.jsp").forward(request,response);
@@ -55,11 +61,29 @@ public class UsuariosServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		LinkedList<Persona> lp= (LinkedList<Persona>)request.getAttribute("listaPersonas");
-		request.setAttribute("listaPersonas", lp);
-		
-		request.getRequestDispatcher("WEB-INF/UserManagement.jsp").forward(request,response);
+		System.out.println("DO POST del ServLet USUARIOSSERVLET");
+		try {
+			LinkedList<Persona> lp= (LinkedList<Persona>)request.getAttribute("listaPersonas");
+			if (lp!=null) {
+				System.out.println("Entra 1");
+				request.setAttribute("listaPersonas", lp);
+				request.getRequestDispatcher("WEB-INF/UserManagement.jsp").forward(request,response);
 				
+			}else {
+				System.out.println("Entra 2");
+				Persona p= (Persona) request.getSession().getAttribute("usuario");
+				request.setAttribute("email",p.getEmail());
+				request.setAttribute("password",p.getPassword());
+				request.getRequestDispatcher("/Signin").forward(request,response);
+			}
+		} catch(Exception e) {
+			System.out.println("Entra 3");
+			Persona p= (Persona) request.getSession().getAttribute("usuario");
+			request.setAttribute("email",p.getEmail());
+			request.setAttribute("password",p.getPassword());
+			request.getRequestDispatcher("/Signin").forward(request,response);
+		}
+					
 				//response.getWriter().append("Bienvenido ").append(per.getNombre()).append(" ").append(per.getApellido());
 	}
 

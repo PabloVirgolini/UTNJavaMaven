@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion2 {
-	private static Conexion2 instancia;
 	
 	private String driver="com.mysql.cj.jdbc.Driver";
 	private String host="localhost";
@@ -15,7 +14,7 @@ public class Conexion2 {
 	private String db="java";
 	private int conectados=0;
 
-	
+	private static Conexion2 instancia;
 	private Connection con;
 
 

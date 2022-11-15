@@ -36,20 +36,8 @@ public class Signin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		//Persona p = (Persona)session.getAttribute("usuario");
-		String email = request.getParameter("email");
-		String habilitado = request.getParameter("habilitado");
-		
-		Persona per = new Persona();
-		per.setEmail(email);
-		
-		ControlMenu ctrl = new ControlMenu();
-		
-		request.setAttribute("habilitado", habilitado);
-		
-		request.getRequestDispatcher("WEB-INF/UserManagement.jsp").forward(request,response);
-			
+
+		doPost(request,response);
 		}
 	
 
@@ -58,6 +46,8 @@ public class Signin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		System.out.println("DO POST del ServLet SIGNIN");
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");		
@@ -77,6 +67,7 @@ public class Signin extends HttpServlet {
 				LinkedList<Persona> personas = ctrl.getAll();
 				
 				request.setAttribute("listaPersonas", personas);
+				
 				request.getRequestDispatcher("/UsuariosServlet").forward(request,response);
 				
 				

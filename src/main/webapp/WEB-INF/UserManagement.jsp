@@ -41,71 +41,78 @@
 		DataPersona pDAO = new DataPersona();
 	%>
 	<div class="container">
-	
 		<% if (p.isHabilitado()) { %>
 			<%@include file="../template/menu.jsp" %>	
 		<%} else {%>
 			<%@include file="../template/menu2.jsp" %>
 		<%} %>
 		
-		<br>
+		<hr>
 		<div class="row align-items-start">
 			<div class="col-9">
 				<h1>Gestión de Mantenimiento</h1>
 			</div>
-			<div class="col-3" align-self-center>
-				<div class="d-grid gap-2">
-					<button type="button" class="btn btn-success btnAdd" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
-				</div>
-			</div>
 		</div>
-			
-		<div class="row">
+
+				
+
+		<div class="table-responsive">		
 			<hr>
-			<h4>Personas</h4>
-				<div class="col-12 col-sm-12 col-lg-12">
-					<div class="table-responsive">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>id</th>
-									<th>nombre</th>
-									<th>apellido</th>
-									<th>email</th>
-									<th>tel</th>
-									<th>habilitado</th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-							<%for(Persona per: lp){ %>
-								<tr>
-									<td class="id"><%=per.getId()%></td>
-									<td class="nombre"><%=per.getNombre()%> </td>
-									<td class="apellido"><%=per.getApellido()%> </td>
-									<td class="email"><%=per.getEmail()%> </td>
-									<td class="telefono"><%=per.getTel()%> </td>
-									<td class="tipoDoc" style="display:none;"><%=per.getDocumento().getTipo()%> </td>
-									<td class="dni" style="display:none;"><%=per.getDocumento().getNro()%> </td>
-									<td>
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="defaultDisabled" <%=per.isHabilitado()?"checked":""%> disabled>
-											<label class="custom-control-label" for="defaultDisabled"><%=per.isHabilitado()?"Si":"No"%></label>
-										</div>
-									</td>
-									<td>
-										<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-										<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-									</td>
-								</tr>
-							
-							<% } %>
-							</tbody>
-					</table>
+			<div class="row align-items-start">
+				<div class="col-9">
+					<h4>Personas</h4>
+				</div>
+				<div class="col-3" align-self-center>
+					<div class="d-grid gap-2">
+						<button type="button" class="btn btn-success btnAdd" data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar</button>
+					</div>
 				</div>
 			</div>
+				
+			<hr>
+				
+			<table class="table">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>nombre</th>
+						<th>apellido</th>
+						<th>email</th>
+						<th>tel</th>
+						<th>habilitado</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<%for(Persona per: lp){ %>
+					<tr>
+						<td class="id"><%=per.getId()%></td>
+						<td class="nombre"><%=per.getNombre()%> </td>
+						<td class="apellido"><%=per.getApellido()%> </td>
+						<td class="email"><%=per.getEmail()%> </td>
+						<td class="telefono"><%=per.getTel()%> </td>
+						<td class="tipoDoc" style="display:none;"><%=per.getDocumento().getTipo()%> </td>
+						<td class="dni" style="display:none;"><%=per.getDocumento().getNro()%> </td>
+						<td>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="defaultDisabled" <%=per.isHabilitado()?"checked":""%> disabled>
+								<label class="custom-control-label" for="defaultDisabled"><%=per.isHabilitado()?"Si":"No"%></label>
+							</div>
+						</td>
+						<td>
+							<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+							<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+						</td>
+					</tr>
+				
+				<% } %>
+				</tbody>
+		</table>
+		
 		</div>
+
+
 		
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -204,8 +211,9 @@
 		        	
 		        	
 		        	
-		        	        	
+		        	<br>        	
 		        	<div class="row">
+		        	
 		        		<div class="col-12">
 		        			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>
 		        			<button type="submit" name="btnEditar" class="btn btn-dark btnOcultarEditar">Editar</button>
