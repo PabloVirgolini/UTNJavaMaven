@@ -28,8 +28,6 @@
 	
 	<link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-
-
 	<title>Gestion de Mantenimiento</title>
 	
 	<!--  Bootstrap core CSS -->
@@ -135,7 +133,7 @@
 		        
 		        <form action="${pageContext.servletContext.contextPath}/ConsultarHistorialIncidenciasServlet" method="post" role="form">
 		        	<div class="row">
-		        		<div class="col-6">
+		        		<div class="col-3">
 		        			<label>ID</label>
 		        			<input type="text" name="txtCodigo" class="form-control" id="txtCodigo" value="0" readonly="true">
 		        		</div>
@@ -143,6 +141,8 @@
 		        			<label>Maquina</label>
 		        			<input type="text" name="txtMaquina" class="form-control" id="txtMaquina">
 		        		</div>
+		        	</div>
+		        	<div class="row">
 		        		<div class="col-6">
 		        			<label>Fecha de Alta</label>
 		        			<input type="text" name="txtFechaAlta" class="form-control" id="txtFechaAlta">
@@ -150,16 +150,21 @@
 		        		<div class="col-6">
 		        			<label>Fecha de Cierre</label>
 		        			<input type="text" name="txtFechaCierre" class="form-control" id="txtFechaCierre">
-		        			<button type="submit" name="btnCerrar" class="btn btn-danger btnCerrarIncidencia">Cerrar</button>
+		        			<div>
+		        				<button type="submit" name="btnCerrar" class="btn btn-danger btnCerrarIncidencia">Cerrar</button>
+		        			</div>
 		        		</div>
+		        	</div>
+		        	<div class="row">
 		        		<div class="col-6">
 		        			<label>DESCRIPCION</label>
 		        			<input type="text" name="txtDescripcion" class="form-control" id="txtDescripcion">
 		        		</div>
 		        	</div>
 		        	
+		        	
 		        	<div class="row">
-		       			<div class="col-3">
+		       			<div class="col-6">
 		       				<label>Asignar Persona para reparacion </label>
 		        			<select name="cbbPersonaReparacion" id="cbbPersonaReparacion" class="form-select">
 							    <option value="">Seleccionar persona...</option>

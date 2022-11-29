@@ -42,3 +42,9 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.contenido { 
+	width: 800px; 
+	margin: 0 auto;
+}
+

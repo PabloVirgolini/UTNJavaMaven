@@ -19,7 +19,8 @@
   </head>
 
 	<body class="text-center">
-		<div>
+		
+		<div class="contenido">
 			<div>
 				<a href="#"><b>Sistema de Mantenimiento</b></a>
 			</div>
@@ -55,7 +56,8 @@
 	    
 		   		<div class="text-center">
 			    	<p> - Verificacion de Credenciales- </p>
-			    	<a href="#" class="btn btn-block"> <i></i> Mensaje: ${msje}</a>
+			    	
+			    	<a href="#" class="btn btn-block"> <p style="color: red"> <i> Mensaje: ${msje} </i> </p> </a>
 		    	</div>
 			    <a href="#"> Olvide la contraseña </a><br>
 			    <a href="#" class="text-center"> Registrar un nuevo usuario </a>
@@ -63,6 +65,6 @@
 		   	<p class="mt-5 mb-3 text-muted">© 2022</p>
    		</div>
 	    
-	    
+	    </center>
 	</body>
 </html>

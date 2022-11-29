@@ -97,8 +97,12 @@
 							<td>
 								<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
 								<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-								<a style="margin-left:5%;margin-right:5%;" href="${pageContext.servletContext.contextPath}/NuevaIncidenciaServlet?nroMaquina=<%= m.getId()%>"> Nueva Incidencia </a>
-								<a href="${pageContext.servletContext.contextPath}/HistorialIncidenciasServlet?nroMaquina=<%= m.getId()%>">Historial de Incidencias </a>
+								<td>
+									<a style="margin-left:5%;margin-right:5%;" href="${pageContext.servletContext.contextPath}/NuevaIncidenciaServlet?nroMaquina=<%= m.getId()%>"> Nueva Incidencia </a>
+								</td>
+								<td>
+									<a href="${pageContext.servletContext.contextPath}/HistorialIncidenciasServlet?nroMaquina=<%= m.getId()%>">Historial de Incidencias </a>
+								</td>
 							</td>
 						</tr>
 					<% } %>
