@@ -47,7 +47,15 @@
 		// IncidenciaDAO iDAO = new IncidenciaDAO();
 	%>
 	<div class="container">
-		<%@include file="../template/menu.jsp" %>
+	
+		<%-- 		 <%@include file="../template/menu.jsp" %> --%>
+		
+		<% if (p.isHabilitado()) { %>
+			<jsp:include page="../template/menu.jsp" />		
+		<%} else {%>
+			<jsp:include page="../template/menu2.jsp" />
+		<%} %>
+		
 		<hr>
 		<div class="row align-items-start">
 			<div class="col-9">

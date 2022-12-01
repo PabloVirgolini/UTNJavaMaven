@@ -111,7 +111,8 @@ public class Signin extends HttpServlet {
 			this.getServletConfig().getServletContext().getRequestDispatcher("/WEB-INF/UserManagement.jsp").forward(request,response);
 		}else if(p!=null && ctrl.validatePermisos(p,2)){
 			session=request.getSession();
-			session.setAttribute("consulta",p);
+			session.setAttribute("usuario",p);
+			request.setAttribute("msje", "Bienvenido al sistema");
 			this.getServletConfig().getServletContext().getRequestDispatcher("/vistas/MenuPrincipal.jsp").forward(request,response);
 		}else {
 			request.setAttribute("msje", "Credenciales incorrectas");

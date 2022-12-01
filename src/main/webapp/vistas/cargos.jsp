@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@page import="entities.Cargo"%>
+<%@page import="entities.Persona"%>
 <%@page import="data.CargoDAO" %>
 <%@page import="java.util.LinkedList"%>
 
@@ -12,6 +13,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<title>Mantenimiento - Cargos</title>
 	
+	<%
+		Persona p= (Persona)session.getAttribute("usuario");
+	%>
+	
+	
 </head>
 
 <body>
@@ -21,7 +27,15 @@
 	
 	
 	<div class="container">
-		<%@include file="../template/menu.jsp" %>
+	
+		<%-- 		 <%@include file="../template/menu.jsp" %> --%>
+		
+		<% if (p.isHabilitado()) { %>
+			<jsp:include page="../template/menu.jsp" />		
+		<%} else {%>
+			<jsp:include page="../template/menu2.jsp" />
+		<%} %>
+		
 		<hr>
 		<div class="row align-items-start">
 			<div class="col-9">

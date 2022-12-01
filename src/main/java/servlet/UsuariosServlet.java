@@ -62,10 +62,10 @@ public class UsuariosServlet extends HttpServlet {
 							verUsuarios(request,response);
 							break;					
 						
-//						case "cerrar":
-//							System.out.println("Entra a CerrarSesion");
-//							cerrarSession(request,response);
-//							break;
+						case "cerrar":
+							System.out.println("Entra a CerrarSesion");
+							cerrarSession(request,response);
+							break;
 //						
 						default:
 							response.sendRedirect("index.jsp");
@@ -82,8 +82,29 @@ public class UsuariosServlet extends HttpServlet {
 			}
 			
 		}else {
+			try {
+				if (accion!=null) {
+					switch(accion) {			
+						
+						case "cerrar":
+							System.out.println("Entra a CerrarSesion");
+							cerrarSession(request,response);
+							break;
+	//					
+						default:
+							response.sendRedirect("index.jsp");
+					}
+				}else {
+					response.sendRedirect("index.jsp");
+				}
+			}catch(Exception e) {
+				try {
+					this.getServletConfig().getServletContext().getRequestDispatcher("/mensaje.jsp").forward(request,response);
+				} catch(Exception ex) {
+					System.out.println("Error " + e.getMessage());
+				}
+			}
 			
-			request.getRequestDispatcher("vistas/MenuPrincipal.jsp").forward(request,response);
 		}
 		
 		//response.getWriter().append("Served at: ").append(request.getContextPath());

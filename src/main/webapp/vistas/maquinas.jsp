@@ -41,10 +41,12 @@
 	
 								
 	<div class="container">
+		<%-- 		 <%@include file="../template/menu.jsp" %> --%>
+		
 		<% if (p.isHabilitado()) { %>
-			<%@include file="../template/menu.jsp" %>	
+			<jsp:include page="../template/menu.jsp" />		
 		<%} else {%>
-			<%@include file="../template/menu2.jsp" %>
+			<jsp:include page="../template/menu2.jsp" />
 		<%} %>
 
 		
