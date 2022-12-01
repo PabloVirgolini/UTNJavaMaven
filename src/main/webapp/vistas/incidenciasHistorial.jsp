@@ -39,6 +39,20 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 	
+	
+	<style>
+      .flex-end {
+        display: flex;
+        justify-content: flex-end;
+      }
+     </style>
+	
+	
+	
+	
+	
+	
+	
 	<%
 		Persona p= (Persona)session.getAttribute("usuario");
 		LinkedList<Incidencia> listaIncidencias= (LinkedList<Incidencia>)request.getAttribute("listaIncidencias");
@@ -105,7 +119,7 @@
 							<td class="id"><%=inc.getId()%></td>
 							<td class="maquina"><%=inc.getMaquina().getNombre()%> </td>
 							<td class="fechaApertura"><%=inc.getFechaApertura()%> </td>
-							<td class="fechaCierre"><%=inc.getFechaCierre()%> </td>
+							<td class="fechaCierre"><%=(inc.getFechaCierre()==null)?"-":inc.getFechaCierre()%> </td>
 							<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
 							<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
 							<td>
@@ -142,19 +156,21 @@
 		        			<input type="text" name="txtMaquina" class="form-control" id="txtMaquina">
 		        		</div>
 		        	</div>
+		        	<br>
 		        	<div class="row">
 		        		<div class="col-6">
 		        			<label>Fecha de Alta</label>
-		        			<input type="text" name="txtFechaAlta" class="form-control" id="txtFechaAlta">
+		        			<input type="date" name="txtFechaAlta" class="form-control" id="txtFechaAlta">
 		        		</div>
 		        		<div class="col-6">
 		        			<label>Fecha de Cierre</label>
-		        			<input type="text" name="txtFechaCierre" class="form-control" id="txtFechaCierre">
-		        			<div>
-		        				<button type="submit" name="btnCerrar" class="btn btn-danger btnCerrarIncidencia">Cerrar</button>
+		        			<div class="flex-end">
+		        				<input type="date" name="txtFechaCierre" class="form-control" id="txtFechaCierre">
+		        				<button type="submit" name="btnCerrar" class="btn btn-dark btnCerrarIncidencia">Cerrar</button>
 		        			</div>
 		        		</div>
 		        	</div>
+		        	<br>
 		        	<div class="row">
 		        		<div class="col-6">
 		        			<label>DESCRIPCION</label>
@@ -162,22 +178,25 @@
 		        		</div>
 		        	</div>
 		        	
-		        	
+		        	<br>
 		        	<div class="row">
 		       			<div class="col-6">
 		       				<label>Asignar Persona para reparacion </label>
-		        			<select name="cbbPersonaReparacion" id="cbbPersonaReparacion" class="form-select">
-							    <option value="">Seleccionar persona...</option>
-							    <%  
-							    	LinkedList<Persona> lista =ctrl.getEncargadosReparaciones();
-							    	for(Persona pEncargado: lista) {
-							    %>
-							    		<option value="<%=pEncargado.getId()%>"> <%=pEncargado.getId() + " - " + pEncargado.getNombre() + " " + pEncargado.getApellido() %></option>
-							    <% } %>
-							</select>
+		       				<div class="flex-end">
+			        			<select name="cbbPersonaReparacion" id="cbbPersonaReparacion" class="form-select">
+								    <option value="">Seleccionar persona...</option>
+								    <%  
+								    	LinkedList<Persona> lista =ctrl.getEncargadosReparaciones();
+								    	for(Persona pEncargado: lista) {
+								    %>
+								    		<option value="<%=pEncargado.getId()%>"> <%=pEncargado.getId() + " - " + pEncargado.getNombre() + " " + pEncargado.getApellido() %></option>
+								    <% } %>
+								</select>
+			       				<button type="submit" name="btnAsignar" class="btn btn-dark btnAsignarPersona">Asignar</button>
+		       				</div>
 		       			</div>
-		       			<button type="submit" name="btnAsignar" class="btn btn-dark btnAsignarPersona">Asignar</button>
 		        	</div>		        	
+		        	<hr>
 		        	
 		        	<div class="row">
 		        		<div class="col-12">

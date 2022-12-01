@@ -38,7 +38,7 @@ public class Signin extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		System.out.println("DO GET del ServLet SIGNIN");
 		doPost(request,response);
 		}
 	
@@ -53,6 +53,8 @@ public class Signin extends HttpServlet {
 		
 		String accion = request.getParameter("accion");
 		System.out.println("accion: " + accion);
+		
+		
 		try {
 			if (accion!=null) {
 				switch(accion) {
@@ -62,6 +64,7 @@ public class Signin extends HttpServlet {
 						break;					
 					
 					case "cerrar":
+						System.out.println("Entra a CerrarSesion");
 						cerrarSession(request,response);
 						break;
 					
@@ -118,6 +121,9 @@ public class Signin extends HttpServlet {
 	
 	private Persona obtenerPersona(HttpServletRequest request) {
 		// TODO Auto-generated method stub
+		System.out.println("Estoy dentro del ObtenerPersona");
+		
+		
 		Persona p = new Persona();
 		p.setEmail(request.getParameter("email"));
 		p.setPassword(request.getParameter("password"));

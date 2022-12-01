@@ -93,7 +93,7 @@
 							<td class="nombre"><%= m.getNombre()%></td>
 							<td class="seccion"><%= m.getSeccionAsignada().getDescripcion()%></td>
 							<td class="fechaAlta"><%= m.getFechaAlta()%></td>
-							<td class="fechaBaja"><%= m.getFechaBaja()%></td>  
+							<td class="fechaBaja"><%= (m.getFechaBaja() == null)? "-" : m.getFechaBaja()%></td>  
 							<td>
 								<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
 								<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
