@@ -1,3 +1,18 @@
+<%@ page import="java.util.LinkedList"%>
+<%@ page import="entities.Persona"%>
+<%@ page import="entities.Cargo"%>
+<%@ page import="data.CargoDAO"%>
+<%@ page import="data.DataPersona"%>
+<%@ page import="logic.ControlMenu"%>
+
+
+	<%
+	Persona per=null;
+	if (session.getAttribute("usuario")!=null){	
+		per= (Persona)session.getAttribute("usuario");
+	}
+	%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -41,6 +56,17 @@
             <li><a class="dropdown-item" href="${pageContext.servletContext.contextPath}/cargos">Cargos</a></li>
           </ul>
         </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%=per.getNombre() %>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="${pageContext.servletContext.contextPath}/UsuariosServlet?usuario=<%= per%>&accion=<%="cerrar"%>">Cerrar Sesion</a></li>
+          </ul>
+        </li>
+		
+		</ul>
 
     </div>
   </div>
