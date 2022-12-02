@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import data.DataPersona;
@@ -45,6 +46,13 @@ public class GestionarPersona {
 		if (cantidad>pDAO.getAll().size()) {
 			return true;	
 		} else return false;
+	}
+	
+	public ArrayList<Rol> getAllRoles(Persona per){
+		ArrayList<Rol> lista = new ArrayList<>();
+		lista = per.getAllRoles();
+		
+		return lista;
 	}
 	
 }

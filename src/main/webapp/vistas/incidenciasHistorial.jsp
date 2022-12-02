@@ -197,6 +197,43 @@
 		       				</div>
 		       			</div>
 		        	</div>		        	
+		        	<br>
+		        	<div class="row col-12">
+		        	
+<!-- 		        	TERMINAR ESTO  -->
+		        	 	<label>FOTOS</label>
+		        	 	<div class="col-3">
+		        	 		<select name="fotosIncidencia" id="fotosIncidencia" multiple="multiple">
+			        			    <%  					
+								    	//ArrayList<Rol> listaRolesActuales = ctrl.getAllRoles(p);
+								    	//for(Rol r: listaRolesActuales) {
+								    %>
+<%-- 								    	<option value="<%=r.getId() %>"> <%=r.getDescripcion() %></option> --%>
+								    <% // } %>
+			        		</select>
+			        	</div>
+			        	<div class="col-3">	
+				        	<div>	
+								<button type="submit" name="btnAgregarFoto" class="btn btn-success btnAgregarFoto">Agregar</button>
+							</div>
+							<div>
+			        			<button type="submit" name="btnEliminarFoto" class="btn btn-danger btnEliminarFoto">Eliminar</button>
+			        		</div>
+			        		
+		        		</div>
+		        		<div class="col-6">
+			        		<figure>
+								 <img src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg"
+								 alt="The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth"
+								 width="200"
+								 height="171">
+								 <figcaption>A T-Rex on display in the Manchester University Museum</figcaption>
+							</figure>
+		        		</div>
+		        	</div>
+		        	
+		        	
+		        	
 		        	<hr>
 		        	
 		        	<div class="row">

@@ -1,9 +1,11 @@
-<%@ page import="java.util.LinkedList"%>
+<%@ page import="java.util.*"%>
 <%@ page import="entities.Persona"%>
+<%@ page import="entities.Rol"%>
 <%@ page import="entities.Cargo"%>
 <%@ page import="data.CargoDAO"%>
 <%@ page import="data.DataPersona"%>
 <%@ page import="logic.ControlMenu"%>
+<%@ page import="logic.GestionarPersona"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,6 +34,13 @@
 	
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
+	<style>
+      .flex-end {
+        display: flex;
+        justify-content: flex-end;
+      }
+     </style>
 	
 	<%
 		Persona p= (Persona)session.getAttribute("usuario");
@@ -45,6 +54,7 @@
 	<% 
 		CargoDAO cDAO = new CargoDAO();
 		DataPersona pDAO = new DataPersona();
+		GestionarPersona ctrl = new GestionarPersona();
 	%> 
 	<div class="container">
 		<% if (p.isHabilitado()) { %>
@@ -161,24 +171,47 @@
 		        			<input type="text" name="txtTipoDoc" class="form-control" id="txtTipoDoc">
 		        		</div>
 		        		
-		        	</div>
-	        		<div class="row">
 		        		<div class="col-6">
 		        			<label>Cargo</label>
-		        			<select name="cbbCargo" id="txtCargo" class="form-select">
-							    <option value="">Seleccionar Cargo...</option>
-							    <%  
-							    	LinkedList<Cargo> lista = cDAO.getAll();
-							    	for(Cargo c: lista) {
-							    %>
-							    	<option value="<%=c.getIdCargo()%>"> <%=c.getDescripcion()%></option>
-							    <% } %>
-							  </select>
+		        			<div class="flex-end">
+			        			<select name="cbbCargo" id="txtCargo" class="form-select">
+								    <option value="">Seleccionar Cargo...</option>
+								    <%  
+								    	LinkedList<Cargo> lista = cDAO.getAll();
+								    	for(Cargo c: lista) {
+								    %>
+								    	<option value="<%=c.getIdCargo()%>"> <%=c.getDescripcion()%></option>
+								    <% } %>
+								  </select>
+								  <button type="submit" name="btnAsignarCargo" class="btn btn-dark btnAsignarCargo">Asignar</button>
+							  </div>
 		        		</div>
 		        	</div>
+		        	<br>
+		        	<div class="row col-6">
 		        	
-		        	
-		        			        	
+<!-- 		        	CORREGIR ESTO QUE VIENE DESPUÉS. SIEMPRE MUESTRA LOS ROLES DEL USUARIO LOGUEADO, NO DEL SELECCIONADO -->
+		        	 	<label>Roles Activos</label>
+		        	 	<div class="col-3">
+		        	 		<select name="rolesActivos" id="listboxRolesActuales" multiple="multiple">
+			        			    <%  					
+								    	ArrayList<Rol> listaRolesActuales = ctrl.getAllRoles(p);
+								    	for(Rol r: listaRolesActuales) {
+								    %>
+								    	<option value="<%=r.getId() %>"> <%=r.getDescripcion() %></option>
+								    <% } %>
+			        		</select>
+			        	</div>
+			        	<div class="col-3">	
+				        	<div>	
+								<button type="submit" name="btnAgregarRol" class="btn btn-success btnAgregarRol">Agregar Rol</button>
+							</div>
+							<div>
+			        			<button type="submit" name="btnEliminarRol" class="btn btn-danger btnEliminarRol">Eliminar Rol</button>
+			        		</div>
+			        		
+		        		</div>
+		        	</div>
 		        	
 		        	
 		        	<!-- VER COMO ARMAR LA EDICION DE LOS ROLES -->
@@ -207,13 +240,7 @@
 <!-- 					</table> -->
 <!-- 		        	</div> -->
 		        	
-		        	
-		        	
-		        	
-		        	
-		        	
-		        	
-		        	
+		       
 		        	
 		        	
 		        	

@@ -11,7 +11,6 @@
 	var tipoDNI = $(fila).find(".tipoDoc").text();
 	var dni = $(fila).find(".dni").text();
 	
-	
 	$("#txtCodigo").val(codigo);
 	$("#txtNombre").val(nombre);
 	$("#txtApellido").val(apellido);
@@ -19,7 +18,6 @@
 	$("#txtTelefono").val(telefono);
 	$("#txtDNI").val(dni);
 	$("#txtTipoDoc").val(tipoDNI);
-	
 
 	
 }
