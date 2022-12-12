@@ -1,19 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
 <%@page import="entities.Seccion"%>
 <%@page import="data.SeccionDAO" %>
 <%@page import="entities.Maquina"%>
 <%@page import="entities.Persona"%>
-
 <%@page import="data.MaquinaDAO" %>
 <%@page import="java.util.LinkedList"%>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% 
+
+	if (session.getAttribute("usuario")!=null) { 
+%>
+
 <html>
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta "http-equiv="X-UA-Compatible content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--  The above 3 meta tags *must* come first in the head; any other head content must come *after* -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="http://getbootstrap.com/favicon.ico">
     		
 	<title>Gestion de Mantenimiento</title>
 	
@@ -38,10 +45,7 @@
 		MaquinaDAO maquinaDAO = new MaquinaDAO();
 	%>
 	
-	
-								
 	<div class="container">
-		<%-- 		 <%@include file="../template/menu.jsp" %> --%>
 		
 		<% if (p.isHabilitado()) { %>
 			<jsp:include page="../template/menu.jsp" />		
@@ -55,15 +59,13 @@
 			<div class="col-9">
 				<h1>Gestión de Mantenimiento</h1>
 			</div>
-
 		</div>
 				
-		
 		<div class="table-responsive">
 			<hr>
 			<div class="row align-items-start">
 				<div class="col-9">
-					<h4>Maquinas</h4>
+					<h4>MAQUINAS</h4>
 				</div>
 				<div class="col-3" align-self-center>
 					<div class="d-grid gap-2">
@@ -90,23 +92,19 @@
 					LinkedList<Maquina> lm = maquinaDAO.getAll();
 					for (Maquina m: lm) {
 					%>
-						<tr>
-							<td class="id">	<%= m.getId()%> </td>
-							<td class="nombre"><%= m.getNombre()%></td>
-							<td class="seccion"><%= m.getSeccionAsignada().getDescripcion()%></td>
-							<td class="fechaAlta"><%= m.getFechaAlta()%></td>
-							<td class="fechaBaja"><%= (m.getFechaBaja() == null)? "-" : m.getFechaBaja()%></td>  
-							<td>
-								<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-								<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-								<td>
-									<a style="margin-left:5%;margin-right:5%;" href="${pageContext.servletContext.contextPath}/NuevaIncidenciaServlet?nroMaquina=<%= m.getId()%>"> Nueva Incidencia </a>
-								</td>
-								<td>
-									<a href="${pageContext.servletContext.contextPath}/HistorialIncidenciasServlet?nroMaquina=<%= m.getId()%>">Historial de Incidencias </a>
-								</td>
-							</td>
-						</tr>
+					<tr>
+						<td class="id">	<%= m.getId()%> </td>
+						<td class="nombre"><%= m.getNombre()%></td>
+						<td class="seccion"><%= m.getSeccionAsignada().getDescripcion()%></td>
+						<td class="fechaAlta"><%= m.getFechaAlta()%></td>
+						<td class="fechaBaja"><%= (m.getFechaBaja() == null)? "-" : m.getFechaBaja()%></td>  
+						<td>
+							<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+							<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+							<a style="margin-left:5%;margin-right:5%;" href="${pageContext.servletContext.contextPath}/NuevaIncidenciaServlet?nroMaquina=<%= m.getId()%>"> Nueva Incidencia </a>	
+							<a href="${pageContext.servletContext.contextPath}/HistorialIncidenciasServlet?nroMaquina=<%= m.getId()%>">Historial de Incidencias </a>
+						</td>
+					</tr>
 					<% } %>
 				</tbody>
 			</table>
@@ -127,7 +125,6 @@
 		        		<div class="col-6">
 		        			<label>ID</label>
 		        			<input type="text" name="txtCodigo" class="form-control" id="txtCodigo" value="0" readonly="true">
-		        			
 		        		</div>
 		        		<div class="col-6">
 		        			<label>Nombre</label>
@@ -167,8 +164,10 @@
 		     
 		    </div>
 		  </div>
-		</div>
-	</div>
+		</div>	<!--  MODAL -->
+	
+	
+	</div> <!--  CONTAINER -->
 	
 	
 <!-- 	Agrego libreria de JQuery (CDNs) -->
@@ -176,8 +175,8 @@
 <!-- 	Agrego libreria de Bootstrap (CDNs) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!-- 	Agrego librerias de JS de DataTables (CDNs) -->
-	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"> </script>
-	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"> </script>
+ 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"> </script>
+ 	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"> </script>
 	    
     <%
     	if (request.getAttribute("message")!=null){
@@ -192,3 +191,8 @@
 </body>
 
 </html>
+<%        
+    } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

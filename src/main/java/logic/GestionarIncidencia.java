@@ -61,6 +61,14 @@ public class GestionarIncidencia {
 		} else return false;
 	}
 	
+	public Boolean validarAsignacionDeEncargado(Persona per) {
+		
+		if (per.getCargo().getIdCargo()==2) {
+				return true;
+		} else return false;
+		
+	}
+	
 	public void asignarIncidencia(Incidencia inc, Persona per) {
 		
 	}

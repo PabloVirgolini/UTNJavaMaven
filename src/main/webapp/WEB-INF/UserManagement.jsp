@@ -57,6 +57,7 @@
 		GestionarPersona ctrl = new GestionarPersona();
 	%> 
 	<div class="container">
+	
 		<% if (p.isHabilitado()) { %>
 			<%@include file="../template/menu.jsp" %>	
 		<%} else {%>
@@ -70,13 +71,11 @@
 			</div>
 		</div>
 
-				
-
 		<div class="table-responsive">		
 			<hr>
 			<div class="row align-items-start">
 				<div class="col-9">
-					<h4>Personas</h4>
+					<h4>USUARIOS</h4>
 				</div>
 				<div class="col-3" align-self-center>
 					<div class="d-grid gap-2">
@@ -100,8 +99,11 @@
 						<th></th>
 					</tr>
 				</thead>
+				
 				<tbody>
-				<%for(Persona per: lp){ %>
+					<%
+					for(Persona per: lp){ 
+					%>
 					<tr>
 						<td class="id"><%=per.getId()%></td>
 						<td class="nombre"><%=per.getNombre()%> </td>
@@ -121,10 +123,9 @@
 							<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
 						</td>
 					</tr>
-				
-				<% } %>
+					<% } %>
 				</tbody>
-		</table>
+			</table>
 		
 		</div>
 
@@ -245,8 +246,7 @@
 		        	
 		        	
 		        	<br>        	
-		        	<div class="row">
-		        	
+		        	<div class="row">		        	
 		        		<div class="col-12">
 		        			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>
 		        			<button type="submit" name="btnEditar" class="btn btn-dark btnOcultarEditar">Editar</button>
@@ -277,7 +277,7 @@
     <%
     	if (request.getAttribute("message")!=null){
     %>
-    <script>alert('<%= request.getAttribute("message")%>')</script>
+    		<script>alert('<%= request.getAttribute("message")%>')</script>
     <%
     	}
     %>

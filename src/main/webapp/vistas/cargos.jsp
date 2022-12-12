@@ -7,6 +7,12 @@
 <%@page import="java.util.LinkedList"%>
 
 <!DOCTYPE html>
+
+<% 
+
+	if (session.getAttribute("usuario")!=null) { 
+%>
+
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -136,3 +142,8 @@
 </body>
 
 </html>
+<%        
+    } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

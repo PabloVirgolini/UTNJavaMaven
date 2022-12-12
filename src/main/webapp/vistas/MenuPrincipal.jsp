@@ -3,6 +3,10 @@
 <%@ page import="entities.Persona"%>
 
 <!DOCTYPE html>
+<% 
+
+	if (session.getAttribute("usuario")!=null) { 
+%>
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -34,3 +38,8 @@
 		</div>
 </body>
 </html>
+<%        
+    } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

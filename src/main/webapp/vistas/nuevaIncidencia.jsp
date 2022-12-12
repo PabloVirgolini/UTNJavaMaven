@@ -11,6 +11,10 @@
 <%@page import="java.util.LinkedList"%>
 
 <!DOCTYPE html>
+<% 
+
+	if (session.getAttribute("usuario")!=null) { 
+%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,10 +77,14 @@
         		</div>
         	</div>
         	<br>
+        	
+        	<%
+        		Boolean validarAsignacionEncargado = ctrl.validarAsignacionDeEncargado(p);
+        	%>
        		<div class="row">
        			<div class="col-3">
        				<label>Asignar Persona para reparacion </label>
-        			<select name="cbbPersonaReparacion" id="cbbPersonaReparacion" class="form-select">
+        			<select name="cbbPersonaReparacion" id="cbbPersonaReparacion" class="form-select" <%=(validarAsignacionEncargado)? ' ' :"disabled" %>>
 					    <option value="">Seleccionar persona...</option>
 					    <%  
 					    	LinkedList<Persona> lista =ctrl.getEncargadosReparaciones();
@@ -105,7 +113,14 @@
        		<div class="row">
        			<label>Fotos</label>
        			
-       			<input type="text" name="txtNombre" class="form-control" id="txtNombre">
+       				<form method="POST" action="upload" enctype="multipart/form-data" >
+			            FOTO:
+			            <input type="file" name="file" id="file" /> <br/>
+			            Destination:
+			            <input type="text" value="/tmp" name="destination"/>
+			            </br>
+			            <input type="submit" value="Upload" name="upload" id="upload" />
+			        </form>      			
        			
        			<input type="hidden" name="idPersonaApertura" class="form-control" id="idPersonaApertura" value="<%=p.getId()%>" readonly="true" >
        		</div>
@@ -126,3 +141,8 @@
  	</div> <!--  Container -->
 </body>
 </html>
+<%        
+    } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

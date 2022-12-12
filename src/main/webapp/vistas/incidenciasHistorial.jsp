@@ -1,6 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
 <%@page import="entities.Seccion"%>
 <%@page import="entities.Persona"%>
 <%@page import="entities.Incidencia"%>
@@ -9,23 +6,23 @@
 <%@page import="data.MaquinaDAO" %>
 <%@page import="data.DataPersona" %>
 <%@page import="logic.GestionarIncidencia" %>
-
 <%@page import="java.util.LinkedList"%>
-
-
-    
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<% 
+
+	if (session.getAttribute("usuario")!=null) { 
+%>
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta "http-equiv="X-UA-Compatible content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--  The above 3 meta tags *must* come first in the head; any other head content must come *after* -->
-	
 	<meta name="description" content="">
 	<meta name="author" content="">
-	
 	<link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
 	<title>Gestion de Mantenimiento</title>
@@ -39,19 +36,13 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 	
-	
 	<style>
       .flex-end {
         display: flex;
         justify-content: flex-end;
       }
      </style>
-	
-	
-	
-	
-	
-	
+
 	
 	<%
 		Persona p= (Persona)session.getAttribute("usuario");
@@ -60,19 +51,16 @@
 	%>
 	
 </head>
+
 <body>
 	<%! 
 		SeccionDAO sDAO = new SeccionDAO();
 		MaquinaDAO mDAO = new MaquinaDAO();
 		DataPersona pDAO = new DataPersona();
 		GestionarIncidencia ctrl = new GestionarIncidencia();
-		// IncidenciaDAO iDAO = new IncidenciaDAO();
 	%>
 	
-	
-	
 	<div class="container">
-		<%-- 		 <%@include file="../template/menu.jsp" %> --%>
 		
 		<% if (p.isHabilitado()) { %>
 			<jsp:include page="../template/menu.jsp" />		
@@ -88,7 +76,6 @@
 			<div class="col-3" align-self-center>
 				<div class="d-grid gap-2">
 					<button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="location.href='${pageContext.servletContext.contextPath}/maquinas'">Volver</button>
-					
 				</div>
 			</div>
 		</div>
@@ -98,7 +85,7 @@
 			<div class="col-9">
 				<h4>INCIDENCIAS   -   Maquina: <%=m.getNombre()%></h4>
 			</div>
-			 
+			
 			<hr>
 			
 			<table class="table table-striped" id="tablaIncidenciasHistorial">
@@ -116,25 +103,23 @@
 					<%
 					for(Incidencia inc: listaIncidencias){
 					%>
-						<tr>
-							<td class="id"><%=inc.getId()%></td>
-							<td class="maquina"><%=inc.getMaquina().getNombre()%> </td>
-							<td class="fechaApertura"><%=inc.getFechaApertura()%> </td>
-							<td class="fechaCierre"><%=(inc.getFechaCierre()==null)?"-":inc.getFechaCierre()%> </td>
-							<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
-							<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
-							<td>
-								<button type="button" class="btn btn-info btnVerFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button>
-								<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-								<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
-							</td>
-						</tr>
+					<tr>
+						<td class="id"><%=inc.getId()%></td>
+						<td class="maquina"><%=inc.getMaquina().getNombre()%> </td>
+						<td class="fechaApertura"><%=inc.getFechaApertura()%> </td>
+						<td class="fechaCierre"><%=(inc.getFechaCierre()==null)?"-":inc.getFechaCierre()%> </td>
+						<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
+						<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
+						<td>
+							<button type="button" class="btn btn-info btnVerFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button>
+							<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+							<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+						</td>
+					</tr>
 					<% } %>
 				</tbody>
 			</table>
 		</div>
-			
-	</div>	 <!--- Container -->
 		
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -173,18 +158,21 @@
 		        	</div>
 		        	<br>
 		        	<div class="row">
-		        		<div class="col-6">
+		        		<div class="col-12">
 		        			<label>DESCRIPCION</label>
-		        			<input type="text" name="txtDescripcion" class="form-control" id="txtDescripcion">
+		        			<textarea rows="5" name="txtDescripcion" class="form-control" id="txtDescripcion"></textarea>
 		        		</div>
 		        	</div>
 		        	
 		        	<br>
+		        	<%
+		        		Boolean validarAsignacionEncargado = ctrl.validarAsignacionDeEncargado(p);
+		        	%>
 		        	<div class="row">
 		       			<div class="col-6">
 		       				<label>Asignar Persona para reparacion </label>
 		       				<div class="flex-end">
-			        			<select name="cbbPersonaReparacion" id="cbbPersonaReparacion" class="form-select">
+			        			<select name="cbbPersonaReparacion" id="cbbPersonaReparacion" class="form-select" <%=(validarAsignacionEncargado)? "":"Disabled" %> >
 								    <option value="">Seleccionar persona...</option>
 								    <%  
 								    	LinkedList<Persona> lista =ctrl.getEncargadosReparaciones();
@@ -193,7 +181,7 @@
 								    		<option value="<%=pEncargado.getId()%>"> <%=pEncargado.getId() + " - " + pEncargado.getNombre() + " " + pEncargado.getApellido() %></option>
 								    <% } %>
 								</select>
-			       				<button type="submit" name="btnAsignar" class="btn btn-dark btnAsignarPersona">Asignar</button>
+			       				<button type="submit" name="btnAsignar" class="btn btn-dark btnAsignarPersona" <%=(validarAsignacionEncargado)? "":"Disabled" %>>Asignar</button>
 		       				</div>
 		       			</div>
 		        	</div>		        	
@@ -231,11 +219,8 @@
 							</figure>
 		        		</div>
 		        	</div>
-		        	
-		        	
-		        	
+
 		        	<hr>
-		        	
 		        	<div class="row">
 		        		<div class="col-12">
 		        			<button type="submit" name="btnEditar" class="btn btn-dark btnOcultarEditar">Editar</button>
@@ -260,9 +245,10 @@
 <!-- 	Agrego libreria de Bootstrap (CDNs) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!-- 	Agrego librerias de JS de DataTables (CDNs) -->
-	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"> </script>
-	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"> </script>
-	    
+ 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"> </script>
+ 	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"> </script>
+
+ 	
     <%
     	if (request.getAttribute("message")!=null){
     %>
@@ -272,6 +258,11 @@
     %>
 	
 	<script src="${pageContext.servletContext.contextPath}/js/incidenciasHistorial.js"></script>
-	
-	</body>
+	    
+</body>
 </html>
+<%        
+    } else {
+        response.sendRedirect("index.jsp");
+    }
+%>

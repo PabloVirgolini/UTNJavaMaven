@@ -42,24 +42,24 @@ public class ConsultarHistorialIncidenciasServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				GestionarIncidencia ctrl = new GestionarIncidencia();
 				
-//				
-//				Boolean respuesta;
-//				String mensaje = "";
-//				if(request.getParameter("btnGuardar")!=null) {
-//					respuesta=ctrl.add(inc);
-//					if(respuesta !=false) {
-//						mensaje ="Registro agregado"; }
-//					
-//				}else if(request.getParameter("btnEditar")!=null) {
-//					respuesta=ctrl.update(inc);
-//					if(respuesta !=false) {
-//						mensaje ="Registro modificado"; }
-//					
-//				}else if(request.getParameter("btnEliminar")!=null) {
-//					respuesta=ctrl.remove(inc);
-//					if(respuesta !=false) {
-//						mensaje ="Registro eliminado"; }
-//				}
+				System.out.println("Estoy en el Servlet ConsultarHistorialIncidencias");
+				Boolean respuesta;
+				String mensaje = "";
+				if(request.getParameter("btnGuardar")!=null) {
+					respuesta=ctrl.add(inc);
+					if(respuesta !=false) {
+						mensaje ="Registro agregado"; }
+					
+				}else if(request.getParameter("btnEditar")!=null) {
+					respuesta=ctrl.update(inc);
+					if(respuesta !=false) {
+						mensaje ="Registro modificado"; }
+					
+				}else if(request.getParameter("btnEliminar")!=null) {
+					respuesta=ctrl.remove(inc);
+					if(respuesta !=false) {
+						mensaje ="Registro eliminado"; }
+				}
 				
 				
 	}

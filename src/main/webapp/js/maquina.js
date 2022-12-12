@@ -12,7 +12,6 @@
 	$("#txtCodigo").val(codigo);
 	$("#txtNombre").val(nombre);
 	$("#txtFechaAlta").val(fechaAlta);
-	
 	$("#txtSector option[selected]").removeAttr('selected');
 	$("#txtSector option:contains("+seccion+")").attr('selected',true);
 	

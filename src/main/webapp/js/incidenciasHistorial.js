@@ -2,21 +2,20 @@
  * 
  */
  
- //function completarFormulario(fila){
-//	var codigo = $(fila).find(".id").text();
-//	var nombre = $(fila).find(".nombre").text();
-//	var seccion = $(fila).find(".seccion").text();
-//	var fechaAlta = $(fila).find(".fechaAlta").text();
-//	
-//
-//	$("#txtCodigo").val(codigo);
-//	$("#txtNombre").val(nombre);
-//	$("#txtFechaAlta").val(fechaAlta);
-//	
-//	$("#txtSector option[selected]").removeAttr('selected');
-//	$("#txtSector option:contains("+seccion+")").attr('selected',true);
+ function completarFormulario(fila){
+	var codigo = $(fila).find(".id").text();
+	var nombre = $(fila).find(".maquina").text();
+	var fechaAlta = $(fila).find(".fechaApertura").text();
+	var fechaCierre = $(fila).find(".fechaCierre").text();
 	
-//}
+	console.log("Completando formulario de IncidenciasHistorial");
+	
+	$("#txtCodigo").val(codigo);
+	$("#txtMaquina").val(nombre);
+	$("#txtFechaAlta").val(fechaAlta);
+	$("#txtFechaCierre").val(fechaCierre);
+	
+}
 
 $(document).ready(function (){
 		
@@ -27,27 +26,26 @@ $(document).ready(function (){
 //			$("#txtSector option[selected]").removeAttr('selected');
 //		})
 //		
-//		$(document).on('click','.btnEditarFila',function(){
-//			completarFormulario($(this).closest('tr'));
-//			$('.btnOcultarEditar').removeAttr('disabled');
-//			$('.btnOcultarGuardar').attr('disabled', 'disabled');
-//			$('.btnOcultarEliminar').attr('disabled', 'disabled');
-//			
-//		});
-//		
-//		$(document).on('click','.btnEliminarFila',function(){
-//			completarFormulario($(this).closest('tr'));
-//			$('.btnOcultarEliminar').removeAttr('disabled');
-//			$('.btnOcultarGuardar').attr('disabled','disabled');
-//			$('.btnOcultarEditar').attr('disabled','disabled');
-//			
-//		});
-//		
-//		$(document).on('click','.btnAdd',function(){
-//			$('.btnOcultarGuardar').removeAttr('disabled');
-//			$('.btnOcultarEliminar').attr('disabled','disabled');
-//			$('.btnOcultarEditar').attr('disabled','disabled');
-//			
-//		});
+		$(document).on('click','.btnEditarFila',function(){
+			completarFormulario($(this).closest('tr'));
+			$('.btnOcultarEditar').removeAttr('disabled');
+			$('.btnOcultarEliminar').attr('disabled', 'disabled');
+			
+		});
+		
+		$(document).on('click','.btnVerFila',function(){
+			completarFormulario($(this).closest('tr'));
+			$('.btnOcultarEditar').removeAttr('disabled');
+			$('.btnOcultarEliminar').attr('disabled', 'disabled');
+			
+		});
+		
+		$(document).on('click','.btnEliminarFila',function(){
+			completarFormulario($(this).closest('tr'));
+			$('.btnOcultarEliminar').removeAttr('disabled');
+			$('.btnOcultarEditar').attr('disabled','disabled');
+			
+		});
+
 				
 	});
