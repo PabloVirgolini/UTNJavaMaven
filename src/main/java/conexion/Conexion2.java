@@ -10,7 +10,7 @@ public class Conexion2 {
 	private String host="localhost";
 	private String port="3306";
 	private String user="root";
-	private String password="admin01admin";
+	private String password="root";
 	private String db="java";
 	private int conectados=0;
 

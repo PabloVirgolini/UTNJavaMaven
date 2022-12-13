@@ -7,7 +7,10 @@
 	var nombre = $(fila).find(".maquina").text();
 	var fechaAlta = $(fila).find(".fechaApertura").text();
 	var fechaCierre = $(fila).find(".fechaCierre").text();
+	var descripcion= $(this).data('descripcion');
 	
+	
+	document.getElementById("txtDescripcion").value=descripcion;
 	$("#txtCodigo").val(codigo);
 	$("#txtMaquina").val(nombre);
 	$("#txtFechaAlta").val(fechaAlta);

@@ -59,7 +59,13 @@ public class ConsultarHistorialIncidenciasServlet extends HttpServlet {
 					respuesta=ctrl.remove(inc);
 					if(respuesta !=false) {
 						mensaje ="Registro eliminado"; }
+				}else if(request.getParameter("btnCerrar")!=null) {
+					respuesta=ctrl.cerrarIncidencia(inc);
+					if(respuesta !=false) {
+						mensaje ="Registro eliminado"; }
 				}
+				
+				
 				
 				
 	}

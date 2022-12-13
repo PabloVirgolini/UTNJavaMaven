@@ -17,14 +17,13 @@ public class IncidenciaDAO extends Conexion{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"INSERT INTO incidencia(fechaApertura,descripcionProblema,idPersonaApertura,idPersonaAsignada,idMaquina) VALUES (?,?,?,?,?)",
+							"INSERT INTO incidencia(fechaApertura,descripcionProblema,idPersonaApertura,idMaquina) VALUES (?,?,?,?)",
 							PreparedStatement.RETURN_GENERATED_KEYS
 							);
 			stmt.setObject(1, i.getFechaApertura());
 			stmt.setString(2, i.getDescripcionProblema());
 			stmt.setInt(3, i.getPersonaApertura().getId());
-			stmt.setInt(4, i.getPersonaAsignada().getId());
-			stmt.setInt(5, i.getMaquina().getId());
+			stmt.setInt(4, i.getMaquina().getId());
 			
 			stmt.executeUpdate();
 			keyResultSet=stmt.getGeneratedKeys();

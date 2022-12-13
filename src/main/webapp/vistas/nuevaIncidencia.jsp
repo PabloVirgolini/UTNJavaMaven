@@ -50,10 +50,7 @@
 		GestionarIncidencia ctrl = new GestionarIncidencia();
 		// IncidenciaDAO iDAO = new IncidenciaDAO();
 	%>
-	<div class="container">
-	
-		<%-- 		 <%@include file="../template/menu.jsp" %> --%>
-		
+	<div class="container">		
 		<% if (p.isHabilitado()) { %>
 			<jsp:include page="../template/menu.jsp" />		
 		<%} else {%>
@@ -75,6 +72,8 @@
         			<input type="text" name="txtMaquina" class="form-control" id="txtMaquina" value="<%=m.getNombre()%>" readonly="true" >
         			<input type="hidden" name="idMaquina" class="form-control" id="idMaquina" value="<%=m.getId()%>" readonly="true" >
         		</div>
+        		
+        		<input type="hidden" name="idPersonaApertura" class="form-control" id="idPersonaApertura" value="<%=p.getId()%>" readonly="true" >
         	</div>
         	<br>
         	
@@ -110,27 +109,20 @@
        			
        		</div>
        		<hr>
-       		<div class="row">
-       			
-       				<form action="${pageContext.servletContext.contextPath}/uploadServlet" method="post" role="form">
-       				<form method="POST" action="uploadServlet" enctype="multipart/form-data" >
-       					<div class="row">
-       						<div class="col-9">
-       							<label>Subir foto</label>
-       							<br>
-			            		<input type="file" name="file" id="file" /> <br/>
-			            		<br>
-					            <input type="submit" value="Upload" name="upload" id="upload" />
-				            </div>
-				            <div class="col-3">
-				            	<label>Fotos subidas</label>
-				            </div>
-			            </div>
-			        </form>      			
-       			
-       			<input type="hidden" name="idPersonaApertura" class="form-control" id="idPersonaApertura" value="<%=p.getId()%>" readonly="true" >
-       		</div>
-        	
+			
+			<div class="row">
+				<div class="col-9">
+					<label>Subir foto</label>
+				<br>
+            		<input type="file" name="file" id="file" /> <br/>
+            		<br>
+		            <input type="submit" value="Upload" name="upload" id="upload" />
+	            </div>
+	            <div class="col-3">
+	            	<label>Fotos subidas</label>
+	            </div>
+            </div>
+	
         	<hr>
         	        	
         	<div class="row">
@@ -139,9 +131,7 @@
         			<button type="button" name="btnCancelar" class="btn btn-info btnOcultarCancelar" onclick="location.href='${pageContext.servletContext.contextPath}/maquinas'">Cancelar</button>
         		</div>
         	</div>
-        	
-        	
-        	
+
         </form>
  
  	</div> <!--  Container -->

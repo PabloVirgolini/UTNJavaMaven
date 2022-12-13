@@ -111,9 +111,9 @@
 						<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
 						<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
 						<td>
-							<button type="button" class="btn btn-info btnVerFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Ver</button>
-							<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
-							<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar</button>
+							<button type="button" class="btn btn-info btnVerFila" data-bs-toggle="modal" data-bs-target="#exampleModal" data-descripcion="<%=inc.getDescripcionProblema()%>">Ver</button>
+							<button type="button" class="btn btn-dark btnEditarFila" data-bs-toggle="modal" data-bs-target="#exampleModal" data-descripcion="<%=inc.getDescripcionProblema()%>">Editar</button>
+							<button type="button" class="btn btn-danger btnEliminarFila" data-bs-toggle="modal" data-bs-target="#exampleModal" data-descripcion="<%=inc.getDescripcionProblema()%>">Eliminar</button>
 						</td>
 					</tr>
 					<% } %>
@@ -131,7 +131,7 @@
 		      </div>
 		      <div class="modal-body">
 		        
-		        <form action="${pageContext.servletContext.contextPath}/ConsultarHistorialIncidenciasServlet" method="post" role="form">
+		        <form action="${pageContext.servletContext.contextPath}/ConsultarHistorialIncidenciasServlet?" method="post" role="form">
 		        	<div class="row">
 		        		<div class="col-3">
 		        			<label>ID</label>

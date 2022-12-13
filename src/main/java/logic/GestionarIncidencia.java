@@ -39,7 +39,7 @@ public class GestionarIncidencia {
 	}
 	
 	public Boolean add(Incidencia inc) {
-		iDAO = new IncidenciaDAO();
+		System.out.println("Dentro del Controlador GestionarIncidencia.add");
 		int cantidad = iDAO.getAll().size();
 		iDAO.add(inc);
 		if (cantidad<iDAO.getAll().size()) {
@@ -49,7 +49,6 @@ public class GestionarIncidencia {
 	
 	public Boolean update(Incidencia inc) {
 		iDAO.update(inc);
-		
 		return true;
 	}
 	
@@ -69,12 +68,18 @@ public class GestionarIncidencia {
 		
 	}
 	
-	public void asignarIncidencia(Incidencia inc, Persona per) {
-		
+	public Incidencia asignarIncidencia(Incidencia inc, Persona per) {
+		inc.setPersonaAsignada(per);
+		iDAO.update(inc);
+		return inc;
 	}
 	
-	public void cerrarIncidencia(Incidencia inc) {
-		
+	public Boolean cerrarIncidencia(Incidencia inc) {
+		inc.setFechaCierre(java.time.LocalDate.now());
+		iDAO.indicarCierre(inc);
+		if (inc.getFechaCierre()!=null ) {
+			return true;	
+		} else return false;
 	}
 	
 	public void abrirIncidencia() {

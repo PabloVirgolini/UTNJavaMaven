@@ -84,6 +84,7 @@ public class CargarNuevaIncidenciaServlet extends HttpServlet {
 		Boolean respuesta;
 		String mensaje = "";
 		if(request.getParameter("btnGuardar")!=null) {
+			System.out.println("Se seleccionó el botón GUARDAR");
 			respuesta=ctrl.add(inc);
 			if(respuesta !=false) {
 				mensaje ="Registro agregado"; }
