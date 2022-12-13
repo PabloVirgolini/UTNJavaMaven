@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+  
 <%@page import="entities.Seccion"%>
 <%@page import="entities.Persona"%>
 <%@page import="data.SeccionDAO" %>
@@ -100,37 +100,43 @@
         		<div class="col-2">
         		<br>
         			<label>Fecha de Apertura</label>
-        			<input type="date" name="txtFechaApertura" class="form-control" id="txtFechaApertura">
+        			<input type="date" name="txtFechaApertura" class="form-control" id="txtFechaApertura" value="<%=java.time.LocalDate.now()%>">
         		</div>
         	</div>
         	<br>
        		<div class="row">
        			<label>Descripcion</label>
-       			<textarea rows="5" name="txtDescripcion"></textarea>
+       			<textarea rows="5" name="txtDescripcion" id="txtDescripcion"></textarea>
        			
        		</div>
-       		<br>
+       		<hr>
        		<div class="row">
-       			<label>Fotos</label>
        			
-       				<form method="POST" action="upload" enctype="multipart/form-data" >
-			            FOTO:
-			            <input type="file" name="file" id="file" /> <br/>
-			            Destination:
-			            <input type="text" value="/tmp" name="destination"/>
-			            </br>
-			            <input type="submit" value="Upload" name="upload" id="upload" />
+       				<form action="${pageContext.servletContext.contextPath}/uploadServlet" method="post" role="form">
+       				<form method="POST" action="uploadServlet" enctype="multipart/form-data" >
+       					<div class="row">
+       						<div class="col-9">
+       							<label>Subir foto</label>
+       							<br>
+			            		<input type="file" name="file" id="file" /> <br/>
+			            		<br>
+					            <input type="submit" value="Upload" name="upload" id="upload" />
+				            </div>
+				            <div class="col-3">
+				            	<label>Fotos subidas</label>
+				            </div>
+			            </div>
 			        </form>      			
        			
        			<input type="hidden" name="idPersonaApertura" class="form-control" id="idPersonaApertura" value="<%=p.getId()%>" readonly="true" >
        		</div>
         	
-        	<br>
-        	
+        	<hr>
+        	        	
         	<div class="row">
         		<div class="col-12">
         			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>
-        			<button type="button" class="btn btn-info" data-bs-dismiss="modal" onclick="location.href='${pageContext.servletContext.contextPath}/maquinas'">Cancelar</button>
+        			<button type="button" name="btnCancelar" class="btn btn-info btnOcultarCancelar" onclick="location.href='${pageContext.servletContext.contextPath}/maquinas'">Cancelar</button>
         		</div>
         	</div>
         	

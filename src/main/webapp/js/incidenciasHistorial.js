@@ -8,8 +8,6 @@
 	var fechaAlta = $(fila).find(".fechaApertura").text();
 	var fechaCierre = $(fila).find(".fechaCierre").text();
 	
-	console.log("Completando formulario de IncidenciasHistorial");
-	
 	$("#txtCodigo").val(codigo);
 	$("#txtMaquina").val(nombre);
 	$("#txtFechaAlta").val(fechaAlta);

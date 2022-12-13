@@ -105,8 +105,8 @@
 					%>
 					<tr>
 						<td class="id"><%=inc.getId()%></td>
-						<td class="maquina"><%=inc.getMaquina().getNombre()%> </td>
-						<td class="fechaApertura"><%=inc.getFechaApertura()%> </td>
+						<td class="maquina"><%=inc.getMaquina().getNombre()%></td>
+						<td class="fechaApertura"><%=inc.getFechaApertura()%></td>
 						<td class="fechaCierre"><%=(inc.getFechaCierre()==null)?"-":inc.getFechaCierre()%> </td>
 						<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
 						<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
@@ -139,19 +139,19 @@
 		        		</div>
 		        		<div class="col-6">
 		        			<label>Maquina</label>
-		        			<input type="text" name="txtMaquina" class="form-control" id="txtMaquina">
+		        			<input type="text" name="txtMaquina" class="form-control" id="txtMaquina" readonly="true">
 		        		</div>
 		        	</div>
 		        	<br>
 		        	<div class="row">
 		        		<div class="col-6">
 		        			<label>Fecha de Alta</label>
-		        			<input type="date" name="txtFechaAlta" class="form-control" id="txtFechaAlta">
+		        			<input type="date" name="txtFechaAlta" class="form-control" id="txtFechaAlta" readonly="true">
 		        		</div>
 		        		<div class="col-6">
 		        			<label>Fecha de Cierre</label>
 		        			<div class="flex-end">
-		        				<input type="date" name="txtFechaCierre" class="form-control" id="txtFechaCierre">
+		        				<input type="date" name="txtFechaCierre" class="form-control" id="txtFechaCierre" readonly="true">
 		        				<button type="submit" name="btnCerrar" class="btn btn-dark btnCerrarIncidencia">Cerrar</button>
 		        			</div>
 		        		</div>
@@ -186,6 +186,8 @@
 		       			</div>
 		        	</div>		        	
 		        	<br>
+		        	
+		        	<hr>
 		        	<div class="row col-12">
 		        	
 <!-- 		        	TERMINAR ESTO  -->

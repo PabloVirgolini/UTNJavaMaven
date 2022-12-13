@@ -10,13 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import data.DataPersona;
-import data.MaquinaDAO;
 import entities.Incidencia;
 import entities.Maquina;
 import entities.Persona;
-import entities.Seccion;
 import logic.GestionarIncidencia;
-import logic.GestionarMaquina;
+
 
 /**
  * Servlet implementation class CargarNuevaIncidenciaServlet
@@ -46,41 +44,42 @@ public class CargarNuevaIncidenciaServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
-		int idMaquina = Integer.parseInt(request.getParameter("idMaquina").trim());
 		
+		System.out.println("Entramos al CargarNuevaIncidenciaServlet");
+		
+		GestionarIncidencia ctrl = new GestionarIncidencia();
+		
+		int idMaquina = Integer.parseInt(request.getParameter("idMaquina").trim());
 		Persona pApertura = (Persona) request.getSession().getAttribute("usuario");
 		
-		int idEncargadoAsignado = Integer.parseInt(request.getParameter("cbbPersonaReparacion"));
-				
 		String fechaAperturaStr = request.getParameter("txtFechaApertura");
 		LocalDate fechaApertura = null;
 		fechaApertura = LocalDate.parse(fechaAperturaStr);
 		
+		//int idEncargadoAsignado = Integer.parseInt(request.getParameter("cbbPersonaReparacion").trim());
+				
 		String txtDescripcion = request.getParameter("txtDescripcion");
 		
 		// FALTA RECUPERAR LAS FOTOS
 		
 		Incidencia inc= new Incidencia();
 		
-		MaquinaDAO mDAO = new MaquinaDAO();
 		Maquina m =new Maquina();
 		m.setId(idMaquina);
-		inc.setMaquina(mDAO.getById(m));
+		m=ctrl.validarMaquina(m);
+		inc.setMaquina(m);
 		
 		inc.setPersonaApertura(pApertura);
 				
-		DataPersona pDAO = new DataPersona();
-		Persona pEncargado = new Persona();
-		pEncargado.setId(idEncargadoAsignado);
-		pEncargado=pDAO.getById(pEncargado);
-		inc.setPersonaAsignada(pEncargado);
+//		DataPersona pDAO = new DataPersona();
+//		Persona pEncargado = new Persona();
+//		pEncargado.setId(idEncargadoAsignado);
+//		pEncargado=pDAO.getById(pEncargado);
+//		inc.setPersonaAsignada(pEncargado);
 
 		inc.setFechaApertura(fechaApertura);
 		
 		inc.setDescripcionProblema(txtDescripcion);
-		
-		GestionarIncidencia ctrl = new GestionarIncidencia();
-		
 		
 		Boolean respuesta;
 		String mensaje = "";
