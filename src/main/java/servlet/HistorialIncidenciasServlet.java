@@ -43,7 +43,10 @@ public class HistorialIncidenciasServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
+		System.out.println("Servlet HistorialIncidenciasServlet - POST");
+		
+		
 		int idMaquina= Integer.parseInt(request.getParameter("nroMaquina"));
 		GestionarIncidencia ctr = new GestionarIncidencia();
 		

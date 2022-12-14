@@ -115,7 +115,8 @@ public class UsuariosServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("DO POST del ServLet USUARIOSSERVLET");
+		System.out.println("Servlet UsuariosServlet - POST");
+		
 		try {
 			LinkedList<Persona> lp= (LinkedList<Persona>)request.getAttribute("listaPersonas");
 			if (lp!=null) {

@@ -49,7 +49,7 @@ public class Signin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		System.out.println("DO POST del ServLet SIGNIN");
+		System.out.println("Servlet Signin - POST");
 		
 		String accion = request.getParameter("accion");
 		System.out.println("accion: " + accion);

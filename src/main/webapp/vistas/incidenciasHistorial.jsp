@@ -106,8 +106,9 @@
 					<tr>
 						<td class="id"><%=inc.getId()%></td>
 						<td class="maquina"><%=inc.getMaquina().getNombre()%></td>
+						<td style="display:none" class="idMaquina"> <%=inc.getMaquina().getId()%> </td>
 						<td class="fechaApertura"><%=inc.getFechaApertura()%></td>
-						<td class="fechaCierre"><%=(inc.getFechaCierre()==null)?"-":inc.getFechaCierre()%> </td>
+						<td class="fechaCierre"><%=(inc.getFechaCierre()==null)?"-":inc.getFechaCierre()%></td>
 						<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
 						<td class="PersonaAsignada"><%=((inc.getPersonaAsignada() == null)? '-':(inc.getPersonaAsignada().getNombre()+ " " +inc.getPersonaAsignada().getApellido())) %> </td>
 						<td>
@@ -131,7 +132,7 @@
 		      </div>
 		      <div class="modal-body">
 		        
-		        <form action="${pageContext.servletContext.contextPath}/ConsultarHistorialIncidenciasServlet?" method="post" role="form">
+		        <form action="${pageContext.servletContext.contextPath}/ConsultarHistorialIncidenciasServlet" method="post" role="form">
 		        	<div class="row">
 		        		<div class="col-3">
 		        			<label>ID</label>
@@ -140,6 +141,7 @@
 		        		<div class="col-6">
 		        			<label>Maquina</label>
 		        			<input type="text" name="txtMaquina" class="form-control" id="txtMaquina" readonly="true">
+		        			<input type="hidden" name="idMaquinaModal" class="form-control" id="idMaquinaModal" readonly="true">
 		        		</div>
 		        	</div>
 		        	<br>
@@ -152,7 +154,7 @@
 		        			<label>Fecha de Cierre</label>
 		        			<div class="flex-end">
 		        				<input type="date" name="txtFechaCierre" class="form-control" id="txtFechaCierre" readonly="true">
-		        				<button type="submit" name="btnCerrar" class="btn btn-dark btnCerrarIncidencia">Cerrar</button>
+		        				<button type="submit" name="btnCerrar" id="btnCerrar" class="btn btn-dark btnCerrarIncidencia" >Cerrar</button>
 		        			</div>
 		        		</div>
 		        	</div>

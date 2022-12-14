@@ -45,8 +45,8 @@ public class CargarNuevaIncidenciaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
 		
-		System.out.println("Entramos al CargarNuevaIncidenciaServlet");
-		
+		System.out.println("Servlet CargarNuevaIncidenciaServlet - POST");
+				
 		GestionarIncidencia ctrl = new GestionarIncidencia();
 		
 		int idMaquina = Integer.parseInt(request.getParameter("idMaquina").trim());

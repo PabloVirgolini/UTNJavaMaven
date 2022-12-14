@@ -40,7 +40,9 @@ public class PersonaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+ 
+		System.out.println("Servlet PersonaServlet - POST");
+		
 		Persona per= new Persona();
 		GestionarPersona ctrl = new GestionarPersona();
 		

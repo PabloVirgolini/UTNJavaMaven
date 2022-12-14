@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "uploadFotosServlet", urlPatterns={"/uploadFotosServlet","/uploadServlet"})
 
-public class uploadFotosServlet extends HttpServlet {
+public class UploadFotosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public uploadFotosServlet() {
+    public UploadFotosServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,11 @@ public class uploadFotosServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("Servlet UploadFotosServlet - POST");
+		
 		doGet(request, response);
+		
+		
 	}
 
 }

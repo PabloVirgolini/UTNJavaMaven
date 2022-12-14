@@ -45,39 +45,40 @@ public class CargoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("Servlet CargoServlet - POST");
+
+		int id = Integer.parseInt(request.getParameter("txtCodigo"));
+		String nombre = request.getParameter("txtNombre");
 		
-				Cargo sec= new Cargo();
-				GestionarCargo ctrl = new GestionarCargo();
-				
-				int id = Integer.parseInt(request.getParameter("txtCodigo"));
-				
-				String nombre = request.getParameter("txtNombre");
-				
-				sec.setIdCargo(id);
-				sec.setDescripcion(nombre);
-				
-				Boolean respuesta;
-				String mensaje = "";
-				if(request.getParameter("btnGuardar")!=null) {
-					respuesta=ctrl.add(sec);
-					if(respuesta !=false) {
-						mensaje ="Registro agregado"; }
-					
-				}else if(request.getParameter("btnEditar")!=null) {
-					respuesta=ctrl.update(sec);
-					if(respuesta !=false) {
-						mensaje ="Registro modificado"; }
-					
-				}else if(request.getParameter("btnEliminar")!=null) {
-					respuesta=ctrl.remove(sec);
-					if(respuesta !=false) {
-						mensaje ="Registro eliminado"; }
-				}
-				
-				request.setAttribute("message", mensaje);
-				request.getRequestDispatcher("/vistas/cargos.jsp").forward(request,response);
-				
-				//response.getWriter().append("Bienvenido ").append(per.getNombre()).append(" ").append(per.getApellido());
+		Cargo sec= new Cargo();
+		sec.setIdCargo(id);
+		sec.setDescripcion(nombre);
+		
+		Boolean respuesta;
+		String mensaje = "";
+		
+		GestionarCargo ctrl = new GestionarCargo();
+		
+		if(request.getParameter("btnGuardar")!=null) {
+			respuesta=ctrl.add(sec);
+			if(respuesta !=false) {
+				mensaje ="Registro agregado"; }
+			
+		}else if(request.getParameter("btnEditar")!=null) {
+			respuesta=ctrl.update(sec);
+			if(respuesta !=false) {
+				mensaje ="Registro modificado"; }
+			
+		}else if(request.getParameter("btnEliminar")!=null) {
+			respuesta=ctrl.remove(sec);
+			if(respuesta !=false) {
+				mensaje ="Registro eliminado"; }
+		}
+		
+		request.setAttribute("message", mensaje);
+		request.getRequestDispatcher("/vistas/cargos.jsp").forward(request,response);
+		
+		//response.getWriter().append("Bienvenido ").append(per.getNombre()).append(" ").append(per.getApellido());
 	}
 
 }
