@@ -38,9 +38,34 @@ public class UploadFotosServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("Servlet UploadFotosServlet - POST");
 		
-		doGet(request, response);
 		
-		
+		String idIncidencia = request.getParameter("idIncidencia");
+        String descripcionFoto = request.getParameter("descripcionFoto");
+        String subidoPor= request.getParameter("persona");
+        String fechaHoraSubida= request.getParameter("fechaHoraSubida");
+        
+        InputStream inputStream = null; // input stream of the upload file
+        Part filePart = request.getPart("archivo"); // Devuelve  <input type="file" name="file">
+        
+        if (filePart != null) {
+            // prints out some information for debugging
+            System.out.println(filePart.getName());
+            System.out.println(filePart.getSize());
+            System.out.println(filePart.getContentType());
+             
+            // obtains input stream of the upload file
+            inputStream = filePart.getInputStream();
+        }
+         
+        Connection conn = null; // connection to the database
+        String message = null;  // message will be sent back to client
+         
+        try {
+        	 // connects to the database
+            DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+            conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
+ 
+            // constructs SQL statement
 	}
 
 }
