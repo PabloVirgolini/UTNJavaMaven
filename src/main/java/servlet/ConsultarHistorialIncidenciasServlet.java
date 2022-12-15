@@ -16,8 +16,8 @@ import logic.GestionarIncidencia;
 /**
  * Servlet implementation class ConsultarHistorialIncidenciasServlet
  */
-@WebServlet("/ConsultarHistorialIncidenciasServlet")
 
+@WebServlet(name = "ConsultarHistorialIncidenciasServlet", urlPatterns={"/ConsultarHistorialIncidenciasServlet"})
 
 public class ConsultarHistorialIncidenciasServlet extends HttpServlet {
 	
@@ -53,7 +53,7 @@ public class ConsultarHistorialIncidenciasServlet extends HttpServlet {
 				System.out.println("Servlet ConsultarHistorialIncidencias - POST");
 				
 				int id = Integer.parseInt(request.getParameter("txtCodigo"));
-				int idMaquina = Integer.parseInt(request.getParameter("idMaquinaModal").trim());
+				int idMaquina = Integer.parseInt(request.getParameter("nroMaquina").trim());
 				
 				GestionarIncidencia ctrl = new GestionarIncidencia();
 				Incidencia inc = new Incidencia();
@@ -63,31 +63,42 @@ public class ConsultarHistorialIncidenciasServlet extends HttpServlet {
 				m.setId(idMaquina);
 				m=ctrl.validarMaquina(m);
 				
-				Boolean respuesta;
-				String mensaje = "";
-				if(request.getParameter("btnGuardar")!=null) {
-					respuesta=ctrl.add(inc);
-					if(respuesta !=false) {
-						mensaje ="Registro agregado"; }
-//					
-//				}else if(request.getParameter("btnEditar")!=null) {
-//					respuesta=ctrl.update(inc);
-//					if(respuesta !=false) {
-//						mensaje ="Registro modificado"; }
-//					
-//				}else if(request.getParameter("btnEliminar")!=null) {
-//					respuesta=ctrl.remove(inc);
-//					if(respuesta !=false) {
-//						mensaje ="Registro eliminado"; }
-				}else if(request.getParameter("btnCerrar")!=null) {
-					respuesta=ctrl.cerrarIncidencia(inc);
-					if(respuesta !=false) {
-						mensaje ="Incidencia cerrada correctamente"; }
-				}
 				
-				request.setAttribute("message", mensaje);
-				request.setAttribute("maquinaIncidencia", m);
-				request.getRequestDispatcher("/vistas/incidenciasHistorial.jsp").forward(request,response);
+				if (m!=null) {
+					
+					LinkedList<Incidencia> incidencias = ctrl.getPorMaquina(m);
+					
+					Boolean respuesta;
+					String mensaje = "";
+					if(request.getParameter("btnGuardar")!=null) {
+						respuesta=ctrl.add(inc);
+						if(respuesta !=false) {
+							mensaje ="Registro agregado"; }
+//						
+//					}else if(request.getParameter("btnEditar")!=null) {
+//						respuesta=ctrl.update(inc);
+//						if(respuesta !=false) {
+//							mensaje ="Registro modificado"; }
+//						
+//					}else if(request.getParameter("btnEliminar")!=null) {
+//						respuesta=ctrl.remove(inc);
+//						if(respuesta !=false) {
+//							mensaje ="Registro eliminado"; }
+						
+					}else if(request.getParameter("btnCerrar")!=null) {
+						respuesta=ctrl.cerrarIncidencia(inc);
+						if(respuesta !=false) {
+							mensaje ="Incidencia cerrada correctamente"; }
+					}
+					
+					request.setAttribute("message", mensaje);
+					request.setAttribute("maquinaIncidencia", m);
+					request.setAttribute("listaIncidencias", incidencias);
+					request.getRequestDispatcher("/vistas/incidenciasHistorial.jsp").forward(request,response);
+					
+				}else {
+					request.getRequestDispatcher("/MaquinaServlet").forward(request,response);
+				}
 				
 				
 	}

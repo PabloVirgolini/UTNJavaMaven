@@ -141,7 +141,7 @@
 		        		<div class="col-6">
 		        			<label>Maquina</label>
 		        			<input type="text" name="txtMaquina" class="form-control" id="txtMaquina" readonly="true">
-		        			<input type="hidden" name="idMaquinaModal" class="form-control" id="idMaquinaModal" readonly="true">
+		        			<input type="hidden" name="nroMaquina" class="form-control" id="nroMaquina" readonly="true">
 		        		</div>
 		        	</div>
 		        	<br>

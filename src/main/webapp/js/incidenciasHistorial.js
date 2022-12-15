@@ -13,7 +13,7 @@
 	document.getElementById("txtDescripcion").value=descripcion;
 	$("#txtCodigo").val(codigo);
 	$("#txtMaquina").val(nombre);
-	$("#idMaquinaModal").val(idMaquina);
+	$("#nroMaquina").val(idMaquina);
 	$("#txtFechaAlta").val(fechaAlta);
 	$("#txtFechaCierre").val(fechaCierre);
 	
