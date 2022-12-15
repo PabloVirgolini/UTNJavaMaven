@@ -196,7 +196,7 @@ public class IncidenciaDAO extends Conexion{
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"DELETE FROM incidncia where idIncidencia=?");
+							"DELETE FROM incidencia where idIncidencia=?");
 			stmt.setInt(1, inc.getId());
 			stmt.executeUpdate();
 		} catch (SQLException e) {

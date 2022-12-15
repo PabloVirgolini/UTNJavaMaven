@@ -66,7 +66,7 @@ public class ConsultarHistorialIncidenciasServlet extends HttpServlet {
 				
 				if (m!=null) {
 					
-					LinkedList<Incidencia> incidencias = ctrl.getPorMaquina(m);
+					
 					
 					Boolean respuesta;
 					String mensaje = "";
@@ -80,16 +80,18 @@ public class ConsultarHistorialIncidenciasServlet extends HttpServlet {
 //						if(respuesta !=false) {
 //							mensaje ="Registro modificado"; }
 //						
-//					}else if(request.getParameter("btnEliminar")!=null) {
-//						respuesta=ctrl.remove(inc);
-//						if(respuesta !=false) {
-//							mensaje ="Registro eliminado"; }
+					}else if(request.getParameter("btnEliminar")!=null) {
+						respuesta=ctrl.remove(inc);
+						if(respuesta !=false) {
+							mensaje ="Registro eliminado"; }
 						
 					}else if(request.getParameter("btnCerrar")!=null) {
 						respuesta=ctrl.cerrarIncidencia(inc);
 						if(respuesta !=false) {
 							mensaje ="Incidencia cerrada correctamente"; }
 					}
+					
+					LinkedList<Incidencia> incidencias = ctrl.getPorMaquina(m);
 					
 					request.setAttribute("message", mensaje);
 					request.setAttribute("maquinaIncidencia", m);

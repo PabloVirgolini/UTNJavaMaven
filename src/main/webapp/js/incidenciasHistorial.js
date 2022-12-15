@@ -5,18 +5,22 @@
  function completarFormulario(fila){
 	var codigo = $(fila).find(".id").text();
 	var nombre = $(fila).find(".maquina").text();
-	var idMaquina = $(fila).find(".idMaquina").text();
 	var fechaAlta = $(fila).find(".fechaApertura").text();
 	var fechaCierre = $(fila).find(".fechaCierre").text();
-	var descripcion= $(this).data('descripcion');
 	
-	document.getElementById("txtDescripcion").value=descripcion;
+	var idMaquina = $(fila).find(".idMaquina").text();
+	var descripcion= $(fila).find(".descripcionProblema").text();
+		
+	//var descripcion= $(this).data('descripcionProblema');
+	// document.getElementById("txtDescripcion").value=descripcion; 
+	//--> Mandarlo así no andaba. Muestra "undefined" en el cuadro de texto
+	
 	$("#txtCodigo").val(codigo);
 	$("#txtMaquina").val(nombre);
 	$("#nroMaquina").val(idMaquina);
 	$("#txtFechaAlta").val(fechaAlta);
 	$("#txtFechaCierre").val(fechaCierre);
-	
+	$("#txtDescripcion").val(descripcion);
 	
 }
 

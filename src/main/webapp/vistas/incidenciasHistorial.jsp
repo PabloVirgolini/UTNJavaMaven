@@ -106,7 +106,10 @@
 					<tr>
 						<td class="id"><%=inc.getId()%></td>
 						<td class="maquina"><%=inc.getMaquina().getNombre()%></td>
+						
 						<td style="display:none" class="idMaquina"> <%=inc.getMaquina().getId()%> </td>
+						<td style="display:none" class="descripcionProblema"> <%=inc.getDescripcionProblema()%></td>
+						
 						<td class="fechaApertura"><%=inc.getFechaApertura()%></td>
 						<td class="fechaCierre"><%=(inc.getFechaCierre()==null)?"-":inc.getFechaCierre()%></td>
 						<td class="PersonaApertura"><%=inc.getPersonaApertura().getNombre()+ " " +inc.getPersonaApertura().getApellido() %> </td>
