@@ -83,7 +83,7 @@ public class PersonaServlet extends HttpServlet {
 			rol = new Rol();
 			rol=this.obtenerRol(request);
 			
-			respuesta=ctrl.addRol(per);
+			respuesta=ctrl.addRol(per, rol);
 			if(respuesta !=false) {
 				mensaje ="Rol agregado"; }
 		
@@ -134,10 +134,14 @@ public class PersonaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("Estoy dentro del obtenerRol del PersonaServlet");
 		
+		String nombreRol = null;
+		
+		GestionarPersona ctrl = new GestionarPersona();
+		
 		if(request.getParameter("btnAgregarRol")!=null) {
-			String nombreRol = request.getParameter("txtRolAgregar");
+			nombreRol = request.getParameter("txtRolAgregar");
 		}else if(request.getParameter("btnEliminarRol")!=null) {
-			String nombreRol = request.getParameter("txtRolEliminar");
+			nombreRol = request.getParameter("txtRolEliminar");
 		}
 		
 		Rol r= new Rol();

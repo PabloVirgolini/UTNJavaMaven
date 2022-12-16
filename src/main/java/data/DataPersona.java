@@ -386,6 +386,8 @@ public class DataPersona {
 	
 	public void saveRoles(Persona per) {
 		ArrayList<Rol> roles = per.getAllRoles();
+		System.out.println("Clase PERSONA. Metodo saveRoles");
+		System.out.println("Cant. ROLES: " + roles.size());
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
 			try {

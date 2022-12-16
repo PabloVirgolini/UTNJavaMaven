@@ -75,11 +75,28 @@ public class GestionarPersona {
 	}
 	
 	public Boolean addRol(Persona per, Rol rol) {
-		
+		int cantidad = per.getAllRoles().size();
+		System.out.println("ROLES antes: " + cantidad);
+		if (!per.hasRol(rol)) {
+			per.addRol(rol);
+			pDAO.saveRoles(per);
+		};
+		if (cantidad>per.getAllRoles().size()) {
+			return true;	
+		} else return false;
 	}
 	
 	public Boolean removeRol(Persona per, Rol rol) {
+		int cantidad = per.getAllRoles().size();
 		
+		if (per.hasRol(rol)) {
+			per.removeRol(rol);
+			pDAO.removeRol(per, rol);
+		};
+		
+		if (cantidad<per.getAllRoles().size()) {
+			return true;	
+		} else return false;
 	}
 	
 	public Rol getRol(Rol rol) {

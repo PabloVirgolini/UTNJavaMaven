@@ -200,11 +200,12 @@
 		        		</div>
 		        	</div>
 		        	<div class="row">
-	<!-- 		        	CORREGIR ESTO QUE VIENE DESPUÉS. SIEMPRE MUESTRA LOS ROLES DEL USUARIO LOGUEADO, NO DEL SELECCIONADO -->
+
 		        	 	
 		        	 	<div class="col-md-3">
 		        	 		<div style="max-width:90%;">
 			        	 		<select name="rolesActivos" id="listboxRolesActuales" class="listboxRolesActuales" multiple="multiple" >
+<!-- 		        	CORREGIR ESTO QUE VIENE DESPUÉS. SIEMPRE MUESTRA LOS ROLES DEL USUARIO LOGUEADO, NO DEL SELECCIONADO -->
 			        			    <%  					
 								    	ArrayList<Rol> listaRolesActuales = ctrl.getAllRoles(p);
 								    	for(Rol r: listaRolesActuales) {
