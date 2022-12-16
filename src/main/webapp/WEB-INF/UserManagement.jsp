@@ -112,6 +112,7 @@
 						<td class="telefono"><%=per.getTel()%> </td>
 						<td class="tipoDoc" style="display:none;"><%=per.getDocumento().getTipo()%> </td>
 						<td class="dni" style="display:none;"><%=per.getDocumento().getNro()%> </td>
+						<td class="cargo" style="display:none;"><%=per.getCargo().getDescripcion().trim()%> </td>
 						<td>
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="defaultDisabled" <%=per.isHabilitado()?"checked":""%> disabled>
@@ -175,7 +176,7 @@
 		        		<div class="col-6">
 		        			<label>Cargo</label>
 		        			<div class="flex-end">
-			        			<select name="cbbCargo" id="txtCargo" class="form-select">
+			        			<select name="cbbCargo" class="form-select cbbCargo" id="txtCargo">
 								    <option value="">Seleccionar Cargo...</option>
 								    <%  
 								    	LinkedList<Cargo> lista = cDAO.getAll();
@@ -189,63 +190,54 @@
 		        		</div>
 		        	</div>
 		        	<br>
-		        	<div class="row col-6">
-		        	
-<!-- 		        	CORREGIR ESTO QUE VIENE DESPUÉS. SIEMPRE MUESTRA LOS ROLES DEL USUARIO LOGUEADO, NO DEL SELECCIONADO -->
-		        	 	<label>Roles Activos</label>
-		        	 	<div class="col-3">
-		        	 		<select name="rolesActivos" id="listboxRolesActuales" multiple="multiple">
+		        	<hr>
+		        	<div class="row">
+		        		<div class="col-md-6">
+		        			<label>Roles Activos</label>
+		        		</div>
+		        		<div class="col-md-6">
+		        			<label>Roles Activos</label>
+		        		</div>
+		        	</div>
+		        	<div class="row">
+	<!-- 		        	CORREGIR ESTO QUE VIENE DESPUÉS. SIEMPRE MUESTRA LOS ROLES DEL USUARIO LOGUEADO, NO DEL SELECCIONADO -->
+		        	 	
+		        	 	<div class="col-md-3">
+		        	 		<div style="max-width:90%;">
+			        	 		<select name="rolesActivos" id="listboxRolesActuales" class="listboxRolesActuales" multiple="multiple" >
 			        			    <%  					
 								    	ArrayList<Rol> listaRolesActuales = ctrl.getAllRoles(p);
 								    	for(Rol r: listaRolesActuales) {
 								    %>
 								    	<option value="<%=r.getId() %>"> <%=r.getDescripcion() %></option>
 								    <% } %>
-			        		</select>
+				        		</select>
+			        		</div>
 			        	</div>
-			        	<div class="col-3">	
+			        	<div class="col-md-3">	
 				        	<div>	
-								<button type="submit" name="btnAgregarRol" class="btn btn-success btnAgregarRol">Agregar Rol</button>
+								<button type="submit" name="btnAgregarRol" class="btn btn-success btnAgregar">Agregar</button>
 							</div>
 							<div>
-			        			<button type="submit" name="btnEliminarRol" class="btn btn-danger btnEliminarRol">Eliminar Rol</button>
+			        			<button type="submit" name="btnEliminarRol" class="btn btn-danger btnEliminar">Eliminar</button>
 			        		</div>
-			        		
 		        		</div>
-		        	</div>
-		        	
-		        	
-		        	<!-- VER COMO ARMAR LA EDICION DE LOS ROLES -->
-<!-- 		        	<div> -->
-<!-- 		        	<h4>Roles</h4> -->
-<!-- 		        	<table class="table"> -->
-<!-- 							<thead> -->
-<!-- 								<tr> -->
-<!-- 									<th>id</th> -->
-<!-- 									<th>nombre</th> -->
-									
-<!-- 								</tr> -->
-<!-- 							</thead> -->
-<!-- 							<tbody> -->
-<%-- 							<%   --%>
-				<!-- 						LinkedList<Rol> roles = 	  -->
-<%-- 							for(Rol r: roles){ %> --%>
-<!-- 								<tr> -->
-<%-- 									<td class="id"><%=r.getId()%></td> --%>
-<%-- 									<td class="nombre"><%=r.getNombre()%> </td> --%>
-
-<!-- 								</tr> -->
-							
-<%-- 							<% } %> --%>
-<!-- 							</tbody> -->
-<!-- 					</table> -->
-<!-- 		        	</div> -->
-		        	
-		       
-		        	
-		        	
-		        	
-		        	<br>        	
+	        			<div class="col-md-3">
+	        				<div style="max-width:90%;">
+		        				<select name="rolesRestantes" id="listboxRolesRestantes" multiple="multiple" class="listboxRolesRestantes" style="max-width:90%;">
+			        			    <%  					
+								    	ArrayList<Rol> listaRolesRestantes = ctrl.getAllRolesRestantes(p);
+								    	for(Rol rl: listaRolesRestantes) {
+								    %>
+								    	<option value="<%=rl.getId() %>"> <%=rl.getDescripcion() %></option>
+								    <% } %>
+				        		</select>
+	        				</div>
+		        	 		
+		        		</div>
+	        		
+		        	<br>
+		        	<hr>        	
 		        	<div class="row">		        	
 		        		<div class="col-12">
 		        			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>

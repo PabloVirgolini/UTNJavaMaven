@@ -55,4 +55,22 @@ public class GestionarPersona {
 		return lista;
 	}
 	
+	public ArrayList<Rol> getAllRolesRestantes(Persona per){
+		rDAO = new DataRol();
+		
+		ArrayList<Rol> listaRolesPersona = new ArrayList<>();
+		LinkedList<Rol> listaRolesGenerales = new LinkedList<>();
+		ArrayList<Rol> listaRolesRestantes = new ArrayList<>();
+		
+		listaRolesPersona = per.getAllRoles();
+		listaRolesGenerales = rDAO.getAll();
+		
+		for (Rol r: listaRolesGenerales) {
+			if (!listaRolesPersona.contains(r)) {
+				listaRolesRestantes.add(r);
+			}
+		}
+		return listaRolesRestantes;
+	}
+	
 }
