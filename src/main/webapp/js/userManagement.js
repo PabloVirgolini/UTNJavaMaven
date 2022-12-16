@@ -77,6 +77,7 @@ $(document).ready(function (){
 			        $('.btnAgregar').removeAttr('disabled');
 			        $('.btnEliminar').attr('disabled','disabled');
 			        document.getElementById('listboxRolesActuales').value="";
+			        $("#txtRolAgregar").val(document.getElementById('listboxRolesRestantes').value);
 			    }
 		});
 		
@@ -86,6 +87,7 @@ $(document).ready(function (){
 					$('.btnAgregar').attr('disabled','disabled');
 			        $('.btnEliminar').removeAttr('disabled');
 			        document.getElementById('listboxRolesRestantes').value="";
+			        $("#txtRolRetirar").val(document.getElementById('listboxRolesActuales').value);
 			    }
 		});
 		

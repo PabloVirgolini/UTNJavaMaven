@@ -14,6 +14,7 @@ public class GestionarPersona {
 	
 	public GestionarPersona() {
 		pDAO=new DataPersona();
+		rDAO = new DataRol();
 	}
 	
 	public LinkedList<Persona> getAll(){
@@ -33,14 +34,14 @@ public class GestionarPersona {
 	}
 	
 	public Boolean update(Persona per) {
-		pDAO = new DataPersona();
+		// pDAO = new DataPersona();
 		pDAO.update(per);
 		
 		return true;
 	}
 	
 	public Boolean remove(Persona per) {
-		pDAO = new DataPersona();
+		//pDAO = new DataPersona();
 		int cantidad = pDAO.getAll().size();
 		pDAO.remove(per);
 		if (cantidad>pDAO.getAll().size()) {
@@ -56,7 +57,7 @@ public class GestionarPersona {
 	}
 	
 	public ArrayList<Rol> getAllRolesRestantes(Persona per){
-		rDAO = new DataRol();
+		//rDAO = new DataRol();
 		
 		ArrayList<Rol> listaRolesPersona = new ArrayList<>();
 		LinkedList<Rol> listaRolesGenerales = new LinkedList<>();
@@ -71,6 +72,20 @@ public class GestionarPersona {
 			}
 		}
 		return listaRolesRestantes;
+	}
+	
+	public Boolean addRol(Persona per, Rol rol) {
+		
+	}
+	
+	public Boolean removeRol(Persona per, Rol rol) {
+		
+	}
+	
+	public Rol getRol(Rol rol) {
+		Rol r=new Rol();
+		r=rDAO.getByDesc(rol);
+		return r;
 	}
 	
 }

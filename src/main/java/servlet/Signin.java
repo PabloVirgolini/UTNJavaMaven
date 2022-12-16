@@ -122,9 +122,8 @@ public class Signin extends HttpServlet {
 	
 	private Persona obtenerPersona(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		System.out.println("Estoy dentro del ObtenerPersona");
-		
-		
+		System.out.println("Estoy dentro del ObtenerPersona del Signin Servlet");
+
 		Persona p = new Persona();
 		p.setEmail(request.getParameter("email"));
 		p.setPassword(request.getParameter("password"));

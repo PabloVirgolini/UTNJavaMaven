@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import entities.Documento;
 import entities.Persona;
+import entities.Rol;
 import logic.GestionarPersona;
 
 /**
@@ -18,6 +19,9 @@ import logic.GestionarPersona;
  */
 @WebServlet("/PersonaServlet")
 public class PersonaServlet extends HttpServlet {
+	
+	GestionarPersona ctrl = null;
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -43,8 +47,65 @@ public class PersonaServlet extends HttpServlet {
  
 		System.out.println("Servlet PersonaServlet - POST");
 		
-		Persona per= new Persona();
 		GestionarPersona ctrl = new GestionarPersona();
+		
+		Persona per= null;
+		Rol rol = null;
+		
+		per = this.obtenerPersona(request);
+		
+		Boolean respuesta;
+		String mensaje = "";
+		if(request.getParameter("btnGuardar")!=null) {
+			respuesta=ctrl.add(per);
+			if(respuesta !=false) {
+				mensaje ="Registro agregado"; }
+			
+		}else if(request.getParameter("btnEditar")!=null) {
+			respuesta=ctrl.update(per);
+			if(respuesta !=false) {
+				mensaje ="Registro modificado"; }
+			
+		}else if(request.getParameter("btnEliminar")!=null) {
+			respuesta=ctrl.remove(per);
+			if(respuesta !=false) {
+				mensaje ="Registro eliminado"; }
+			
+		}else if(request.getParameter("btnEliminarRol")!=null) {
+			rol = new Rol();
+			rol=this.obtenerRol(request);
+			
+			respuesta=ctrl.removeRol(per, rol);
+			if(respuesta !=false) {
+				mensaje ="Rol eliminado"; }
+			
+		}else if(request.getParameter("btnAgregarRol")!=null) {
+			rol = new Rol();
+			rol=this.obtenerRol(request);
+			
+			respuesta=ctrl.addRol(per);
+			if(respuesta !=false) {
+				mensaje ="Rol agregado"; }
+		
+		}
+		
+		request.getSession().setAttribute("usuario", per);
+		request.setAttribute("message", mensaje);
+		
+		LinkedList<Persona> personas = ctrl.getAll();
+		request.setAttribute("listaPersonas", personas);
+		request.getRequestDispatcher("WEB-INF/UserManagement.jsp").forward(request,response);
+		
+		
+		//response.getWriter().append("Bienvenido ").append(per.getNombre()).append(" ").append(per.getApellido());
+	
+	}
+	
+	private Persona obtenerPersona(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		System.out.println("Estoy dentro del ObtenerPersona del PersonaServlet");
+		
+		Persona per = new Persona();
 		
 		int id = Integer.parseInt(request.getParameter("txtCodigo"));
 		String nombre = request.getParameter("txtNombre");
@@ -66,35 +127,26 @@ public class PersonaServlet extends HttpServlet {
 		per.setTel(telefono);
 		per.setDocumento(doc);
 		
-		request.getSession().setAttribute("usuario", per);
+		return per;
+	}
+	
+	private Rol obtenerRol(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		System.out.println("Estoy dentro del obtenerRol del PersonaServlet");
 		
-		Boolean respuesta;
-		String mensaje = "";
-		if(request.getParameter("btnGuardar")!=null) {
-			respuesta=ctrl.add(per);
-			if(respuesta !=false) {
-				mensaje ="Registro agregado"; }
-			
-		}else if(request.getParameter("btnEditar")!=null) {
-			respuesta=ctrl.update(per);
-			if(respuesta !=false) {
-				mensaje ="Registro modificado"; }
-			
-		}else if(request.getParameter("btnEliminar")!=null) {
-			respuesta=ctrl.remove(per);
-			if(respuesta !=false) {
-				mensaje ="Registro eliminado"; }
+		if(request.getParameter("btnAgregarRol")!=null) {
+			String nombreRol = request.getParameter("txtRolAgregar");
+		}else if(request.getParameter("btnEliminarRol")!=null) {
+			String nombreRol = request.getParameter("txtRolEliminar");
 		}
 		
-		request.setAttribute("message", mensaje);
+		Rol r= new Rol();
+		r.setDescripcion(nombreRol);
+		r=ctrl.getRol(r);
 		
-		LinkedList<Persona> personas = ctrl.getAll();
-		request.setAttribute("listaPersonas", personas);
-		request.getRequestDispatcher("WEB-INF/UserManagement.jsp").forward(request,response);
-		
-		
-		//response.getWriter().append("Bienvenido ").append(per.getNombre()).append(" ").append(per.getApellido());
-	
+		return r;
 	}
+	
+	
 
 }

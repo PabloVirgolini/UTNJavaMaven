@@ -212,6 +212,7 @@
 								    	<option value="<%=r.getId() %>"> <%=r.getDescripcion() %></option>
 								    <% } %>
 				        		</select>
+				        		<input type="hidden" name="txtRolRetirar" class="form-control" id="txtRolRetirar" readonly="true">
 			        		</div>
 			        	</div>
 			        	<div class="col-md-3">	
@@ -232,12 +233,13 @@
 								    	<option value="<%=rl.getId() %>"> <%=rl.getDescripcion() %></option>
 								    <% } %>
 				        		</select>
+				        		<input type="hidden" name="txtRolAgregar" class="form-control" id="txtRolAgregar" readonly="true">
 	        				</div>
 		        	 		
 		        		</div>
-	        		
-		        	<br>
-		        	<hr>        	
+	        		<br>
+		        	<hr>
+		        	<br>        	
 		        	<div class="row">		        	
 		        		<div class="col-12">
 		        			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>
