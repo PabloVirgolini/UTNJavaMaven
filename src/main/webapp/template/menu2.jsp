@@ -5,18 +5,16 @@
 <%@ page import="data.DataPersona"%>
 <%@ page import="logic.ControlMenu"%>
 
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
 	<%
 	Persona per=null;
 	if (session.getAttribute("usuario")!=null){	
 		per= (Persona)session.getAttribute("usuario");
 	}
 	%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-
+	
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
   
@@ -29,7 +27,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 	        <li class="nav-item">
-	          <a class="nav-link" href="${pageContext.servletContext.contextPath}/vistas/MenuPrincipal.jsp">Home</a>
+	          <a class="nav-link" href="${pageContext.servletContext.contextPath}/MenuPrincipalServlet">Home</a>
 	        </li>
 	        
 	        <li class="nav-item">
