@@ -53,9 +53,13 @@
 		      
 				     
 			    </form> 
-	    
+	    		
 		   		<div class="text-center">
 			    	<p> - Verificacion de Credenciales- </p>
+			    	
+			    	<% 
+			    		String msje= (String)session.getAttribute("msje");
+					%>
 			    	
 			    	<a href="#" class="btn btn-block"> <p style="color: red"> <i> Mensaje: ${msje} </i> </p> </a>
 		    	</div>

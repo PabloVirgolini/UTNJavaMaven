@@ -115,6 +115,57 @@ public class DataPersona {
 		return p;
 	}
 	
+	public Persona getByEmail(Persona per) {
+		DataRol dr=null;
+		CargoDAO cDAO = new CargoDAO();
+		Persona p=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT id,nombre,apellido,tipo_doc,nro_doc,email,tel,habilitado,idCargo FROM persona WHERE email=?"
+					);
+			stmt.setString(1, per.getEmail());
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				p=new Persona();
+				p.setDocumento(new Documento());
+				p.setId(rs.getInt("id"));
+				p.setNombre(rs.getString("nombre"));
+				p.setApellido(rs.getString("apellido"));
+				p.getDocumento().setTipo(rs.getString("tipo_doc"));
+				p.getDocumento().setNro(rs.getString("nro_doc"));
+				p.setEmail(rs.getString("email"));
+				p.setTel(rs.getString("tel"));
+				p.setHabilitado(rs.getBoolean("habilitado"));
+				//
+				
+				Cargo c = new Cargo();
+				c.setIdCargo(rs.getInt("idCargo"));
+				p.setCargo(new Cargo());
+				p.setCargo(cDAO.getById(c));
+				
+				dr = new DataRol();
+				dr.setRoles(p);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return p;
+	}
+
+	
+	
 	public LinkedList<Persona> getByCargo(Cargo c) {
 		DataRol dr=new DataRol();
 		CargoDAO cDAO = new CargoDAO();

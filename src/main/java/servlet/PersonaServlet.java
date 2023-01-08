@@ -59,12 +59,16 @@ public class PersonaServlet extends HttpServlet {
 		if(request.getParameter("btnGuardar")!=null) {
 			respuesta=ctrl.add(per);
 			if(respuesta !=false) {
-				mensaje ="Registro agregado"; }
+				mensaje ="Registro agregado"; } 
+			else {mensaje = "Error al realizar el alta. Posiblemente el correo ya esté registrado: pruebe cambiandolo por otro";}	
 			
 		}else if(request.getParameter("btnEditar")!=null) {
 			respuesta=ctrl.update(per);
 			if(respuesta !=false) {
-				mensaje ="Registro modificado"; }
+				mensaje ="Registro modificado"; 
+				} else {
+					mensaje = "Error al actualizar. Posiblemente el correo indicado esté registrado para otro usuario. Verificar."
+				}
 			
 		}else if(request.getParameter("btnEliminar")!=null) {
 			respuesta=ctrl.remove(per);

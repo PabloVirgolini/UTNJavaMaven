@@ -26,18 +26,27 @@ public class GestionarPersona {
 	}
 	
 	public Boolean add(Persona per) {
-		int cantidad = pDAO.getAll().size();
-		pDAO.add(per);
-		if (cantidad==pDAO.getAll().size()) {
-			return true;	
-		} else return false;
+		if pDAO.getByEmail(per)=null {
+			int cantidad = pDAO.getAll().size();
+			pDAO.add(per);
+			if (cantidad==pDAO.getAll().size()) {
+				return true;	
+			} else { 
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
 	public Boolean update(Persona per) {
-		// pDAO = new DataPersona();
-		pDAO.update(per);
-		
-		return true;
+		if pDAO.getByEmail(per).getId()==per.getId(){
+			pDAO.update(per);
+			return true;
+		else {  
+			// entiendo que se editó el mail y el mail nuevo que indico ya existe para otro usuario
+			return false;
+		}
 	}
 	
 	public Boolean remove(Persona per) {
