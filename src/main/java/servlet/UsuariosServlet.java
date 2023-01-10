@@ -75,7 +75,7 @@ public class UsuariosServlet extends HttpServlet {
 				}
 			}catch(Exception e) {
 				try {
-					this.getServletConfig().getServletContext().getRequestDispatcher("/mensaje.jsp").forward(request,response);
+					this.getServletConfig().getServletContext().getRequestDispatcher("errores/mensaje.jsp").forward(request,response);
 				} catch(Exception ex) {
 					System.out.println("Error " + e.getMessage());
 				}
@@ -99,7 +99,7 @@ public class UsuariosServlet extends HttpServlet {
 				}
 			}catch(Exception e) {
 				try {
-					this.getServletConfig().getServletContext().getRequestDispatcher("/mensaje.jsp").forward(request,response);
+					this.getServletConfig().getServletContext().getRequestDispatcher("errores/mensaje.jsp").forward(request,response);
 				} catch(Exception ex) {
 					System.out.println("Error " + e.getMessage());
 				}
@@ -124,7 +124,7 @@ public class UsuariosServlet extends HttpServlet {
 				request.setAttribute("listaPersonas", lp);
 				request.getRequestDispatcher("WEB-INF/UserManagement.jsp").forward(request,response);
 				
-			}else {
+			} else {
 				System.out.println("Entra 2");
 				Persona p= (Persona) request.getSession().getAttribute("usuario");
 				request.setAttribute("email",p.getEmail());

@@ -5,20 +5,28 @@ import java.util.LinkedList;
 
 import data.DataPersona;
 import data.DataRol;
+import data.CargoDAO;
 import entities.Persona;
 import entities.Rol;
+import entities.Cargo;
 
 public class GestionarPersona {
 	private DataPersona pDAO;
 	private DataRol rDAO;
+	private CargoDAO cDAO;
 	
 	public GestionarPersona() {
-		pDAO=new DataPersona();
+		pDAO = new DataPersona();
 		rDAO = new DataRol();
+		cDAO = new CargoDAO();
 	}
 	
 	public LinkedList<Persona> getAll(){
 		return pDAO.getAll();
+	}
+	
+	public LinkedList<Cargo> getAllCargos(){
+		return cDAO.getAll();
 	}
 	
 	public Rol validate(Rol rolPersona) {
@@ -26,7 +34,7 @@ public class GestionarPersona {
 	}
 	
 	public Boolean add(Persona per) {
-		if pDAO.getByEmail(per)=null {
+		if (pDAO.getByEmail(per)==null) {
 			int cantidad = pDAO.getAll().size();
 			pDAO.add(per);
 			if (cantidad==pDAO.getAll().size()) {
@@ -40,10 +48,10 @@ public class GestionarPersona {
 	}
 	
 	public Boolean update(Persona per) {
-		if pDAO.getByEmail(per).getId()==per.getId(){
+		if (pDAO.getByEmail(per).getId()==per.getId()) {
 			pDAO.update(per);
 			return true;
-		else {  
+		} else {  
 			// entiendo que se editó el mail y el mail nuevo que indico ya existe para otro usuario
 			return false;
 		}

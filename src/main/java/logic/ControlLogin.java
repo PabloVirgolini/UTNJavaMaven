@@ -43,7 +43,7 @@ public class ControlLogin {
 		
 		if (p.hasRol(rol)) {
 			b = true;
-		}else {
+		} else {
 			b=false;
 		}
 			

@@ -56,40 +56,45 @@ public class PersonaServlet extends HttpServlet {
 		
 		Boolean respuesta;
 		String mensaje = "";
-		if(request.getParameter("btnGuardar")!=null) {
+		if (request.getParameter("btnGuardar")!=null) {
 			respuesta=ctrl.add(per);
-			if(respuesta !=false) {
-				mensaje ="Registro agregado"; } 
-			else {mensaje = "Error al realizar el alta. Posiblemente el correo ya esté registrado: pruebe cambiandolo por otro";}	
+			if (respuesta!=false) {
+				mensaje ="Registro agregado"; 
+				} else {
+					mensaje = "Error al realizar el alta. Posiblemente el correo ya esté registrado: pruebe cambiandolo por otro";
+				}	
 			
-		}else if(request.getParameter("btnEditar")!=null) {
+		} else if (request.getParameter("btnEditar")!=null) {
 			respuesta=ctrl.update(per);
-			if(respuesta !=false) {
+			if (respuesta!=false) {
 				mensaje ="Registro modificado"; 
 				} else {
-					mensaje = "Error al actualizar. Posiblemente el correo indicado esté registrado para otro usuario. Verificar."
+					mensaje = "Error al actualizar. Posiblemente el correo indicado esté registrado para otro usuario. Verificar.";
 				}
 			
-		}else if(request.getParameter("btnEliminar")!=null) {
+		} else if (request.getParameter("btnEliminar")!=null) {
 			respuesta=ctrl.remove(per);
 			if(respuesta !=false) {
-				mensaje ="Registro eliminado"; }
+				mensaje ="Registro eliminado";
+				}
 			
-		}else if(request.getParameter("btnEliminarRol")!=null) {
+		} else if (request.getParameter("btnEliminarRol")!=null) {
 			rol = new Rol();
 			rol=this.obtenerRol(request);
 			
 			respuesta=ctrl.removeRol(per, rol);
 			if(respuesta !=false) {
-				mensaje ="Rol eliminado"; }
+				mensaje ="Rol eliminado";
+				}
 			
-		}else if(request.getParameter("btnAgregarRol")!=null) {
+		} else if (request.getParameter("btnAgregarRol")!=null) {
 			rol = new Rol();
 			rol=this.obtenerRol(request);
 			
 			respuesta=ctrl.addRol(per, rol);
 			if(respuesta !=false) {
-				mensaje ="Rol agregado"; }
+				mensaje ="Rol agregado";
+				}
 		
 		}
 		

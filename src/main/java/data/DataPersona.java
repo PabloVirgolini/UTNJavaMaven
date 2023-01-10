@@ -20,8 +20,8 @@ public class DataPersona {
 			stmt= DbConnector.getInstancia().getConn().createStatement();
 			rs= stmt.executeQuery("SELECT id,nombre,apellido,tipo_doc,nro_doc,email,tel,habilitado,idCargo FROM persona");
 			//intencionalmente no se recupera la password
-			if(rs!=null) {
-				while(rs.next()) {
+			if (rs!=null) {
+				while (rs.next()) {
 					Persona p=new Persona();
 					
 					p.setDocumento(new Documento());
@@ -51,8 +51,8 @@ public class DataPersona {
 			
 		} finally {
 			try {
-				if(rs!=null) {rs.close();}
-				if(stmt!=null) {stmt.close();}
+				if (rs!=null) {rs.close();}
+				if (stmt!=null) {stmt.close();}
 				DbConnector.getInstancia().releaseConn();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -383,7 +383,9 @@ public class DataPersona {
             e.printStackTrace();
 		} finally {
             try {
-                if(stmt!=null)stmt.close();
+                if(stmt!=null) {
+                	stmt.close();
+                }
                 DbConnector.getInstancia().releaseConn();
             } catch (SQLException e) {
             	e.printStackTrace();
@@ -526,15 +528,19 @@ public class DataPersona {
 			stmt.setString(1, per.getEmail());
 			
 			rs=stmt.executeQuery();
-			if(rs!=null && rs.next()) {
+			if (rs!=null && rs.next()) {
 				per.setId(rs.getInt("id"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			try {
-				if(rs!=null) {rs.close();}
-				if(stmt!=null) {stmt.close();}
+				if (rs!=null) {
+					rs.close();
+					}
+				if (stmt!=null) {
+					stmt.close();
+					}
 				DbConnector.getInstancia().releaseConn();
 			} catch (SQLException e) {
 				e.printStackTrace();

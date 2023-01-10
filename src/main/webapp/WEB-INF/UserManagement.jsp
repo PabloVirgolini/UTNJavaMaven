@@ -2,17 +2,15 @@
 <%@ page import="entities.Persona"%>
 <%@ page import="entities.Rol"%>
 <%@ page import="entities.Cargo"%>
-<%@ page import="data.CargoDAO"%>
-<%@ page import="data.DataPersona"%>
 <%@ page import="logic.ControlMenu"%>
 <%@ page import="logic.GestionarPersona"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<% 
 
-	if (session.getAttribute("usuario")!=null) { 
-%>
+	<% 
+		if (session.getAttribute("usuario")!=null) { 
+	%>
 
 <html>
 <head>
@@ -45,22 +43,19 @@
 	<%
 		Persona p= (Persona)session.getAttribute("usuario");
 		LinkedList<Persona> lp= (LinkedList<Persona>)request.getAttribute("listaPersonas");
-		
 	%>
 	
 </head>
 
 <body>
 	<% 
-		CargoDAO cDAO = new CargoDAO();
-		DataPersona pDAO = new DataPersona();
 		GestionarPersona ctrl = new GestionarPersona();
 	%> 
 	<div class="container">
 	
 		<% if (p.isHabilitado()) { %>
 			<%@include file="../template/menu.jsp" %>	
-		<%} else {%>
+		<%} else { %>
 			<%@include file="../template/menu2.jsp" %>
 		<%} %>
 		
@@ -179,7 +174,7 @@
 			        			<select name="cbbCargo" class="form-select cbbCargo" id="txtCargo">
 								    <option value="">Seleccionar Cargo...</option>
 								    <%  
-								    	LinkedList<Cargo> lista = cDAO.getAll();
+							    	LinkedList<Cargo> lista = ctrl.getAllCargos();
 								    	for(Cargo c: lista) {
 								    %>
 								    	<option value="<%=c.getIdCargo()%>"> <%=c.getDescripcion()%></option>

@@ -76,7 +76,7 @@ public class Signin extends HttpServlet {
 			}
 		}catch(Exception e) {
 			try {
-				this.getServletConfig().getServletContext().getRequestDispatcher("/mensaje.jsp").forward(request,response);
+				this.getServletConfig().getServletContext().getRequestDispatcher("errores/mensaje.jsp").forward(request,response);
 			} catch(Exception ex) {
 				System.out.println("Error " + e.getMessage());
 			}
@@ -102,19 +102,23 @@ public class Signin extends HttpServlet {
 		System.out.println("PERSONA ANTES DE VALIDAR:" + p);
 		p=ctrl.validateUser(p);
 		System.out.println("PERSONA DESPUES DE VALIDAR:" + p);
-		if(p!=null && ctrl.validatePermisos(p,1) ) {
+		if (p!=null && ctrl.validatePermisos(p,1)) {
+			System.out.println("Estamos en el Verificar - Pasamos ValidatePermisos con 1");
 			session=request.getSession();
 			session.setAttribute("usuario", p);
 			request.setAttribute("msje", "Bienvenido al sistema");
 			LinkedList<Persona> lista=ctrl.getAll();
 			request.setAttribute("listaPersonas", lista);
+			System.out.println("Estamos en el Verificar - Nos estamos yendo del ValidatePermisos con 1 al UserManagement");
 			this.getServletConfig().getServletContext().getRequestDispatcher("/WEB-INF/UserManagement.jsp").forward(request,response);
-		}else if(p!=null && ctrl.validatePermisos(p,2)){
+		} else if (p!=null && ctrl.validatePermisos(p,2)) {
+			System.out.println("Estamos en el Verificar - Pasamos ValidatePermisos con 2");
 			session=request.getSession();
 			session.setAttribute("usuario",p);
 			request.setAttribute("msje", "Bienvenido al sistema");
 			this.getServletConfig().getServletContext().getRequestDispatcher("/vistas/MenuPrincipal.jsp").forward(request,response);
-		}else {
+		} else {
+			System.out.println("Estamos en el Verificar - No Pasamos ValidatePermisos");
 			request.setAttribute("msje", "Credenciales incorrectas");
 			request.getRequestDispatcher("index.jsp").forward(request,response);
 		}
