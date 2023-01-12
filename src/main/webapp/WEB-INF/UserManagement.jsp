@@ -78,9 +78,8 @@
 					</div>
 				</div>
 			</div>
-				
-			<hr>
-				
+			<br>
+			
 			<table class="table">
 				<thead>
 					<tr>
@@ -194,9 +193,8 @@
 		        			<label>Roles Activos</label>
 		        		</div>
 		        	</div>
+		        	
 		        	<div class="row">
-
-		        	 	
 		        	 	<div class="col-md-3">
 		        	 		<div style="max-width:90%;">
 			        	 		<select name="rolesActivos" id="listboxRolesActuales" class="listboxRolesActuales" multiple="multiple" >
@@ -233,9 +231,8 @@
 	        				</div>
 		        	 		
 		        		</div>
-	        		<br>
-		        	<hr>
-		        	<br>        	
+		        	</div>
+		        	<hr> 	
 		        	<div class="row">		        	
 		        		<div class="col-12">
 		        			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>
