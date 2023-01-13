@@ -183,14 +183,14 @@
 							  </div>
 		        		</div>
 		        	</div>
-		        	<br>
+<!-- __________________________  ROLES  __________________________________  -->		        	
 		        	<hr>
 		        	<div class="row">
 		        		<div class="col-md-6">
 		        			<label>Roles Activos</label>
 		        		</div>
 		        		<div class="col-md-6">
-		        			<label>Roles Activos</label>
+		        			<label>Roles Restantes</label>
 		        		</div>
 		        	</div>
 		        	
@@ -198,13 +198,18 @@
 		        	 	<div class="col-md-3">
 		        	 		<div style="max-width:90%;">
 			        	 		<select name="rolesActivos" id="listboxRolesActuales" class="listboxRolesActuales" multiple="multiple" >
+			        	 		
+			        	 		
 <!-- 		        	CORREGIR ESTO QUE VIENE DESPUÉS. SIEMPRE MUESTRA LOS ROLES DEL USUARIO LOGUEADO, NO DEL SELECCIONADO -->
-			        			    <%  					
+			        			    <%  
+			        			    	//Acá hay que cambiar el p por la persona indicada. ¿Cómo indicar la persona?
 								    	ArrayList<Rol> listaRolesActuales = ctrl.getAllRoles(p);
 								    	for(Rol r: listaRolesActuales) {
 								    %>
 								    	<option value="<%=r.getId() %>"> <%=r.getDescripcion() %></option>
 								    <% } %>
+								    
+								    
 				        		</select>
 				        		<input type="hidden" name="txtRolRetirar" class="form-control" id="txtRolRetirar" readonly="true">
 			        		</div>
@@ -232,7 +237,9 @@
 		        	 		
 		        		</div>
 		        	</div>
-		        	<hr> 	
+<!-- __________________________ FIN ROLES  __________________________________  -->
+
+		        	<hr>
 		        	<div class="row">		        	
 		        		<div class="col-12">
 		        			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>
