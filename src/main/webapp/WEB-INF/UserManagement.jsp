@@ -107,6 +107,10 @@
 						<td class="tipoDoc" style="display:none;"><%=per.getDocumento().getTipo()%> </td>
 						<td class="dni" style="display:none;"><%=per.getDocumento().getNro()%> </td>
 						<td class="cargo" style="display:none;"><%=per.getCargo().getDescripcion().trim()%> </td>
+						
+						<td class="rolesActivos" style="display:none;"><%=ctrl.getAllRoles(per)%> </td>
+						<td class="rolesRestantes" style="display:none;"><%=ctrl.getAllRolesRestantes(per)%> </td>
+						
 						<td>
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="defaultDisabled" <%=per.isHabilitado()?"checked":""%> disabled>

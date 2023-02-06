@@ -18,34 +18,17 @@
 	
 	<style>
 		ul.nav{
-		  margin: 0;
-		  padding: 0;
-		  float:left;
-		  width: 100%;
-		}
+			margin: 0;
+			padding: 0;
+			float:left;
+			width: 100%;
+			}
 		ul li {
-		    list-style: none;
-		    float:left;
-		    padding: 5px
-		}
-		ul li:last-child {
-		     float: right;
-		}
-		.navbar-nav {
-		    width: 100%;
-		}
-		
-		.navbar-collapse ul li:last-child {      
-		    float: right;
-		}
-		
-		#menu > li:last-child
-		{
-		    float:right;
-		}
+			list-style: none;
+			float:left;
+			padding: 5px
+			}
      </style>
-
-
 
 		
 <nav class="navbar navbar-expand-lg bg-light">
@@ -75,11 +58,12 @@
 	        
 	        <li class="nav-item dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reportes</a>
-	          
+	          	
 		          <ul class="dropdown-menu">
 		            <li><a class="dropdown-item" href="#">Del Personal</a></li>
 		            <li><a class="dropdown-item" href="#">De Maquinas</a></li>
 		          </ul>
+		          
 	        </li>
 	        
 	      	<li class="nav-item dropdown">
@@ -89,15 +73,18 @@
 			            <li><a class="dropdown-item" href="${pageContext.servletContext.contextPath}/cargos">Cargos</a></li>
 		          </ul>
 	        </li>
-	        
-	        <li class="nav-item dropdown">
-	          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%=per.getNombre() %></a>
-		          <ul class="dropdown-menu">
-		            	<li><a class="dropdown-item" href="${pageContext.servletContext.contextPath}/UsuariosServlet?usuario=<%= per%>&accion=<%="cerrar"%>">Cerrar Sesion</a></li>
-		          </ul>
-	        </li>
 		
 		</ul>
     </div>
+    
+    <ul>
+	    <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle"  style="float: right" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%=per.getNombre() %></a>
+	        <ul class="dropdown-menu">
+	          	<li><a class="dropdown-item" href="${pageContext.servletContext.contextPath}/UsuariosServlet?usuario=<%= per%>&accion=<%="cerrar"%>">Cerrar Sesion</a></li>
+	        </ul>
+     	</li>
+    </ul>
+    
   </div>
 </nav>
