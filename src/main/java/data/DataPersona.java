@@ -367,7 +367,7 @@ public class DataPersona {
 			
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
-							"UPDATE persona SET tipo_doc=?, nro_doc=?, nombre=?, apellido=?, email=?, tel=?, habilitado=? WHERE id=?");
+							"UPDATE persona SET tipo_doc=?, nro_doc=?, nombre=?, apellido=?, email=?, tel=?, habilitado=?, idCargo=? WHERE id=?");
 			stmt.setString(1, per.getDocumento().getTipo());
 			stmt.setString(2, per.getDocumento().getNro());
 			stmt.setString(3, per.getNombre());
@@ -375,8 +375,10 @@ public class DataPersona {
 			stmt.setString(5, per.getEmail());
 			stmt.setString(6, per.getTel());
 			stmt.setBoolean(7, per.isHabilitado());
+			stmt.setInt(8, per.getCargo().getIdCargo());
 			
-			stmt.setInt(8, per.getId());
+			
+			stmt.setInt(9, per.getId());
 			stmt.executeUpdate();
 			
 		} catch (SQLException e) {

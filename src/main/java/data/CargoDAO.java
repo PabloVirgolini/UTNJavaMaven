@@ -76,6 +76,39 @@ public class CargoDAO {
 		return c;
 	}
 	
+	public Cargo getByDescripcion(Cargo car) {
+		Cargo c=null;
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=DbConnector.getInstancia().getConn().prepareStatement(
+					"SELECT idcargo, descripcion FROM cargo WHERE descripcion=?"
+					);
+			stmt.setString(1, car.getDescripcion());
+			
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()) {
+				c=new Cargo();
+				c.setIdCargo(rs.getInt("idcargo"));
+				c.setDescripcion(rs.getString("descripcion"));
+				}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) {rs.close();}
+				if(stmt!=null) {stmt.close();}
+				DbConnector.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return c;
+	}
+	
+	
+	
 	
 	//add 
 	public void add(Cargo p) {

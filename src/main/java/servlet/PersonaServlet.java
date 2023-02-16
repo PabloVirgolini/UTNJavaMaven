@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import entities.Cargo;
 import entities.Documento;
 import entities.Persona;
 import entities.Rol;
@@ -49,10 +50,10 @@ public class PersonaServlet extends HttpServlet {
 		
 		GestionarPersona ctrl = new GestionarPersona();
 		
-		Persona per= null;
-		Rol rol = null;
+		Persona usuario = (Persona) request.getSession().getAttribute("usuario");
 		
-		per = this.obtenerPersona(request);
+		Persona per= null;
+		per = this.armarPersona(request);
 		
 		Boolean respuesta;
 		String mensaje = "";
@@ -79,6 +80,7 @@ public class PersonaServlet extends HttpServlet {
 				}
 			
 		} else if (request.getParameter("btnEliminarRol")!=null) {
+			Rol rol = null;
 			rol = new Rol();
 			rol=this.obtenerRol(request);
 			
@@ -88,6 +90,7 @@ public class PersonaServlet extends HttpServlet {
 				}
 			
 		} else if (request.getParameter("btnAgregarRol")!=null) {
+			Rol rol = null;
 			rol = new Rol();
 			rol=this.obtenerRol(request);
 			
@@ -95,10 +98,19 @@ public class PersonaServlet extends HttpServlet {
 			if(respuesta !=false) {
 				mensaje ="Rol agregado";
 				}
-		
+			
+		} else if (request.getParameter("btnAsignarCargo")!=null) {
+			System.out.println("Cargo: " + per.getCargo().getDescripcion());
+			respuesta=ctrl.update(per);
+			if(respuesta !=false) {
+				mensaje ="Registro actualizado";
+				} else {
+					mensaje = "Error al actualizar. Verificar.";
+				}
+			
 		}
 		
-		request.getSession().setAttribute("usuario", per);
+		request.getSession().setAttribute("usuario", usuario);
 		request.setAttribute("message", mensaje);
 		
 		LinkedList<Persona> personas = ctrl.getAll();
@@ -110,9 +122,9 @@ public class PersonaServlet extends HttpServlet {
 	
 	}
 	
-	private Persona obtenerPersona(HttpServletRequest request) {
+	private Persona armarPersona(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		System.out.println("Estoy dentro del ObtenerPersona del PersonaServlet");
+		System.out.println("Estoy dentro del ArmarPersona del PersonaServlet");
 		
 		Persona per = new Persona();
 		
@@ -122,12 +134,11 @@ public class PersonaServlet extends HttpServlet {
 		String email = request.getParameter("txtEmail");
 		String telefono = request.getParameter("txtTelefono");
 		String dni = request.getParameter("txtDNI");
-		String tipoDni = request.getParameter("txtTipoDoc");
-		
+		String tipoDni = request.getParameter("txtTipoDoc");		
 		
 		Documento doc = new Documento();
 		doc.setNro(dni);
-		doc.setTipo(tipoDni);
+		doc.setTipo(tipoDni);	
 		
 		per.setId(id);
 		per.setNombre(nombre);
@@ -135,6 +146,8 @@ public class PersonaServlet extends HttpServlet {
 		per.setEmail(email);
 		per.setTel(telefono);
 		per.setDocumento(doc);
+		
+		per.setCargo(this.obtenerCargo(request));		
 		
 		return per;
 	}
@@ -158,6 +171,24 @@ public class PersonaServlet extends HttpServlet {
 		r=ctrl.getRol(r);
 		
 		return r;
+	}
+	
+	private Cargo obtenerCargo(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		System.out.println("Estoy dentro del obtenerCargo del PersonaServlet");
+		int idCargo=0;
+		
+		GestionarPersona ctrl = new GestionarPersona();
+		
+		if(request.getParameter("btnAsignarCargo")!=null) {
+			idCargo = Integer.parseInt(request.getParameter("cbbCargo"));
+		}
+		
+		Cargo c= new Cargo();
+		c.setIdCargo(idCargo);
+		c=ctrl.getCargo(c);
+		
+		return c;
 	}
 	
 	
