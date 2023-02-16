@@ -183,7 +183,7 @@
 								    	<option value="<%=c.getIdCargo()%>"> <%=c.getDescripcion()%></option>
 								    <% } %>
 								  </select>
-								  <button type="submit" name="btnAsignarCargo" class="btn btn-dark btnAsignarCargo">Asignar</button>
+								  <button type="submit" name="btnAsignarCargo" class="btn btn-dark btnAsignarCargo" id="btnAsignarCargo">Asignar</button>
 							  </div>
 		        		</div>
 		        	</div>

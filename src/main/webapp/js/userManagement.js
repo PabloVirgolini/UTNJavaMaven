@@ -71,6 +71,15 @@ $(document).ready(function (){
 			$('.listboxRolesActuales').attr('disabled','disabled');
 		});
 		
+		$(document).on('change','.cbbCargo',function(){
+			if (document.getElementById('txtCargo').value != '') 
+			    {
+			        $('.btnAsignarCargo').removeAttr('disabled');
+			    } else {
+				    $('.btnAsignarCargo').attr('disabled','disabled');
+				}
+		});		
+		
 		$(document).on('click','.listboxRolesRestantes',function(){
 			if (document.getElementById('listboxRolesRestantes').value != '') 
 			    {
