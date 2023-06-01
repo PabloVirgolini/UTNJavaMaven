@@ -41,12 +41,14 @@ public class ControlLogin {
 		
 		System.out.println(r);
 		
+		// return p.hasRol(rol)
+		
 		if (p.hasRol(rol)) {
 			b = true;
 		} else {
 			b=false;
 		}
-			
+		
 		return b;		
 	}
 }

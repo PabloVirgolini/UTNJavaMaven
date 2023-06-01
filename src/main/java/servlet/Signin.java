@@ -10,12 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import data.DataPersona;
-import data.DataRol;
 import entities.Persona;
-import entities.Rol;
 import logic.ControlLogin;
-import logic.ControlMenu;
 
 /**
  * Servlet implementation class Signin
@@ -116,6 +112,7 @@ public class Signin extends HttpServlet {
 			session=request.getSession();
 			session.setAttribute("usuario",p);
 			request.setAttribute("msje", "Bienvenido al sistema");
+			System.out.println("Estamos en el Verificar - Nos estamos yendo del ValidatePermisos con 2 al UserManagement");
 			this.getServletConfig().getServletContext().getRequestDispatcher("/vistas/MenuPrincipal.jsp").forward(request,response);
 		} else {
 			System.out.println("Estamos en el Verificar - No Pasamos ValidatePermisos");

@@ -78,9 +78,8 @@
 					</div>
 				</div>
 			</div>
-				
-			<hr>
-				
+			<br>
+			
 			<table class="table">
 				<thead>
 					<tr>
@@ -108,6 +107,10 @@
 						<td class="tipoDoc" style="display:none;"><%=per.getDocumento().getTipo()%> </td>
 						<td class="dni" style="display:none;"><%=per.getDocumento().getNro()%> </td>
 						<td class="cargo" style="display:none;"><%=per.getCargo().getDescripcion().trim()%> </td>
+						
+						<td class="rolesActivos" style="display:none;"><%=ctrl.getAllRoles(per)%> </td>
+						<td class="rolesRestantes" style="display:none;"><%=ctrl.getAllRolesRestantes(per)%> </td>
+						
 						<td>
 							<div class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" id="defaultDisabled" <%=per.isHabilitado()?"checked":""%> disabled>
@@ -180,33 +183,37 @@
 								    	<option value="<%=c.getIdCargo()%>"> <%=c.getDescripcion()%></option>
 								    <% } %>
 								  </select>
-								  <button type="submit" name="btnAsignarCargo" class="btn btn-dark btnAsignarCargo">Asignar</button>
+								  <button type="submit" name="btnAsignarCargo" class="btn btn-dark btnAsignarCargo" id="btnAsignarCargo">Asignar</button>
 							  </div>
 		        		</div>
 		        	</div>
-		        	<br>
+<!-- __________________________  ROLES  __________________________________  -->		        	
 		        	<hr>
 		        	<div class="row">
 		        		<div class="col-md-6">
 		        			<label>Roles Activos</label>
 		        		</div>
 		        		<div class="col-md-6">
-		        			<label>Roles Activos</label>
+		        			<label>Roles Restantes</label>
 		        		</div>
 		        	</div>
+		        	
 		        	<div class="row">
-
-		        	 	
 		        	 	<div class="col-md-3">
 		        	 		<div style="max-width:90%;">
 			        	 		<select name="rolesActivos" id="listboxRolesActuales" class="listboxRolesActuales" multiple="multiple" >
+			        	 		
+			        	 		
 <!-- 		        	CORREGIR ESTO QUE VIENE DESPUÉS. SIEMPRE MUESTRA LOS ROLES DEL USUARIO LOGUEADO, NO DEL SELECCIONADO -->
-			        			    <%  					
+			        			    <%  
+			        			    	//Acá hay que cambiar el p por la persona indicada. ¿Cómo indicar la persona?
 								    	ArrayList<Rol> listaRolesActuales = ctrl.getAllRoles(p);
 								    	for(Rol r: listaRolesActuales) {
 								    %>
 								    	<option value="<%=r.getId() %>"> <%=r.getDescripcion() %></option>
 								    <% } %>
+								    
+								    
 				        		</select>
 				        		<input type="hidden" name="txtRolRetirar" class="form-control" id="txtRolRetirar" readonly="true">
 			        		</div>
@@ -233,9 +240,10 @@
 	        				</div>
 		        	 		
 		        		</div>
-	        		<br>
+		        	</div>
+<!-- __________________________ FIN ROLES  __________________________________  -->
+
 		        	<hr>
-		        	<br>        	
 		        	<div class="row">		        	
 		        		<div class="col-12">
 		        			<button type="submit" name="btnGuardar" class="btn btn-success btnOcultarGuardar">Guardar</button>

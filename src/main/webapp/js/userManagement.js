@@ -3,14 +3,14 @@
  */
  
  function completarFormulario(fila){
-	var codigo = $(fila).find(".id").text();
-	var nombre = $(fila).find(".nombre").text();
-	var apellido = $(fila).find(".apellido").text();
-	var email = $(fila).find(".email").text();
-	var telefono = $(fila).find(".telefono").text();
-	var tipoDNI = $(fila).find(".tipoDoc").text();
-	var dni = $(fila).find(".dni").text();
-	var cargo = $(fila).find(".cargo").text();
+	var codigo = $(fila).find(".id").text().trim();
+	var nombre = $(fila).find(".nombre").text().trim();
+	var apellido = $(fila).find(".apellido").text().trim();
+	var email = $(fila).find(".email").text().trim();
+	var telefono = $(fila).find(".telefono").text().trim();
+	var tipoDNI = $(fila).find(".tipoDoc").text().trim();
+	var dni = $(fila).find(".dni").text().trim();
+	var cargo = $(fila).find(".cargo").text().trim();
 	
 	$("#txtCodigo").val(codigo);
 	$("#txtNombre").val(nombre);
@@ -70,6 +70,15 @@ $(document).ready(function (){
 			$('.listboxRolesRestantes').attr('disabled','disabled');
 			$('.listboxRolesActuales').attr('disabled','disabled');
 		});
+		
+		$(document).on('change','.cbbCargo',function(){
+			if (document.getElementById('txtCargo').value != '') 
+			    {
+			        $('.btnAsignarCargo').removeAttr('disabled');
+			    } else {
+				    $('.btnAsignarCargo').attr('disabled','disabled');
+				}
+		});		
 		
 		$(document).on('click','.listboxRolesRestantes',function(){
 			if (document.getElementById('listboxRolesRestantes').value != '') 

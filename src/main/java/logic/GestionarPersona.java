@@ -122,4 +122,10 @@ public class GestionarPersona {
 		return r;
 	}
 	
+	public Cargo getCargo(Cargo cargo) {
+		Cargo c = new Cargo();
+		c=cDAO.getById(cargo);
+		return c;
+	}
+	
 }
